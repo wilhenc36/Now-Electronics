@@ -1,5 +1,6 @@
 //Importar modulos requeridos
 const express = require("express");
+const usuarioController = require("../controllers/usuarioController");
 
 //Configurar y mantiene todos los endpoints en el servidor
 const router = express.Router();
@@ -10,5 +11,10 @@ module.exports = () => {
         res.send("Bienvenido a Now Electronics!");
     });
 
+    // Rutas para usuario
+    router.get("/crear-cuenta", usuarioController.formularioCrearCuenta);
+
+    router.post("/registrarse", usuarioController.crearCuenta);
+
     return router;
-}
+};
