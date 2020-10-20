@@ -1,0 +1,35 @@
+{
+  "name": "nowelectronics",
+  "version": "1.0.0",
+  "description": "Tienda en linea de productos electronicos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wilhenc36/Now-Electronics.git"
+  },
+  "keywords": [
+    "node",
+    "handlebars",
+    "mongoose",
+    "bootstrap",
+    "MVC"
+  ],
+  "author": "José Escoto, Wilhen Cruz, Jassiel Aldana, Hertdert Ortega, David Torres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wilhenc36/Now-Electronics/issues"
+  },
+  "homepage": "https://github.com/wilhenc36/Now-Electronics#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "mongoose": "^5.10.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
