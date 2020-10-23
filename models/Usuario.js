@@ -87,4 +87,4 @@ usuarioSchema.methods.comparePassword = function (candidatePassword) {
   }).catch(console.log("Error al momento de comparar los passwords"));
 };
 
-  module.exports = mongoose.model("Usuarios", usuarioSchema);
+module.exports = mongoose.model("Usuarios", usuarioSchema);
