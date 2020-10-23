@@ -2,9 +2,17 @@
 const mongoose = require("mongoose");
 const Usuario = mongoose.model("Usuarios");
 
+const year = new Date().getFullYear();
+
 // Cargar el formulario de la creación de una cuenta de usuario
 exports.formularioCrearCuenta = (req, res, next) => {
-  res.render("registrarse", { layout: "auth" });
+   res.render("registrarse", {
+    layout: "auth",
+    typePage: "register-page",
+    signButtonValue: "/iniciar-sesion",
+    signButtonText: "Iniciar sesión",
+    year,
+  });
 };
 
 // Procesar el formulario de creación de cuenta
