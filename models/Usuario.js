@@ -56,21 +56,17 @@ usuarioSchema.pre("save", function (next) {
     });
   });
 });
-
-// Hooks activar el usuario y almacenar la fecha de registro
+/*// Hooks activar el usuario y almacenar la fecha de registro
 usuarioSchema.pre("save", function (err, doc, next) {
-  // TODO: Revisar la inserción para el hook
   const user = this;
 
-  if (err) return next(err);
-  else {
-    user.activo = true;
-    user.fechaRegistro = Date.now();
-    user.save();
-  }
+  // Datos adicionales para el usuario
+  user.activo = true;
+  user.fechaRegistro = Date.now();
 
   next();
 });
+*/
 
 // Realizar un método que automáticamente verifique si el password candidato
 // ingresado por el usuario es igual al almacenado en la BD (hash + salt)
