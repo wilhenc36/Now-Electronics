@@ -1,6 +1,7 @@
 // Importar los módulos requeridos
 const mongoose = require("mongoose");
 const Usuario = mongoose.model("Usuarios");
+const { validationResult } = require("express-validator");
 
 const year = new Date().getFullYear();
 
@@ -17,6 +18,32 @@ exports.formularioCrearCuenta = (req, res, next) => {
 
 // Procesar el formulario de creación de cuenta
 exports.crearCuenta = async (req, res, next) => {
+  // Verificar que no existan errores de validacion
+  const errores = validationResult(req);
+  const erroresArray = [];
+
+  console.log(errores);
+
+  // Si hay errores
+  if (!errores.isEmpty()) {
+    // Utilizar la función map para navegar dentro de un arreglo
+    errores.array().map((error) => erroresArray.push(error.msg));
+
+    console.log(erroresArray);
+
+    // Agregar los errores a nuestro mensajes flash
+    req.flash("error", erroresArray);
+
+    res.render("registrarse", {
+      layout: "auth",
+      typePage: "register-page",
+      signButtonValue: "/iniciar-sesion",
+      signButtonText: "Iniciar sesión",
+      year,
+      messages: req.flash(),
+    });
+  }
+
   // Obtener las variables desde el cuerpo de la petición
   const { nombre, email, password } = req.body;
 
@@ -39,5 +66,11 @@ exports.crearCuenta = async (req, res, next) => {
 
 // Cargar el formulairo de iniciar sesión
 exports.formularioIniciarSesion = (req, res, next) =>{
-  res.render("iniciarSesion", { layout: "auth" });
+  res.render("iniciarSesion", { 
+    layout: "auth",
+    typePage: "login-page",
+    signButtonValue: "/crear-cuenta",
+    signButtonText: "Regístrate",
+    year,
+  });
 };
