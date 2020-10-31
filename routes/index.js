@@ -38,6 +38,8 @@ module.exports = () => {
 
     router.post("/iniciar-sesion", authController.autenticarUsuario);
 
+    router.get("/olvide-password", authController.formularioRestablecerPassword);
+    
     //Rutas de administracion
     router.get("/administrar", (req, res, next) => {
         res.send("Administracion del sitio");

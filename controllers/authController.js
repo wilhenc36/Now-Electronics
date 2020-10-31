@@ -22,3 +22,7 @@ exports.cerrarSesion = (req, res, next) => {
 
   return res.redirect("/iniciar-sesion");
 };
+// Mostrar el formulario de restablecer la contraseña
+exports.formularioRestablecerPassword = (req, res, next) => {
+  res.send("Formulario de restablecer contraseña");
+};
