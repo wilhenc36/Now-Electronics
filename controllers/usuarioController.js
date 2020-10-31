@@ -22,12 +22,16 @@ exports.crearCuenta = async (req, res, next) => {
   const errores = validationResult(req);
   const erroresArray = [];
 
-  console.log(errores);
+  //console.log(errores);
 
   // Si hay errores
   if (!errores.isEmpty()) {
     // Utilizar la función map para navegar dentro de un arreglo
-    errores.array().map((error) => erroresArray.push(error.msg));
+    errores
+    .array()
+    .map((error) => 
+    erroresArray.push({ messages: error.msg, alertType: "danger" })
+    );
 
     console.log(erroresArray);
 
@@ -40,11 +44,10 @@ exports.crearCuenta = async (req, res, next) => {
       signButtonValue: "/iniciar-sesion",
       signButtonText: "Iniciar sesión",
       year,
-      messages: req.flash(),
+      messages: errores,
     });
-  }
-
-  // Obtener las variables desde el cuerpo de la petición
+  } else {
+    // Obtener las variables desde el cuerpo de la petición
   const { nombre, email, password } = req.body;
 
   // Intentar almacenar los datos del usuario
@@ -59,8 +62,17 @@ exports.crearCuenta = async (req, res, next) => {
     });
 
     // Mostrar un mensaje
+    const mensaje = [];
+    mensaje.push({ 
+      message: "Usuario creado!",
+      alertType: "succes",
+  });
+    req.flash("error", mensaje);
+
+    res.redirect("/iniciar-sesion");
   } catch (error) {
     console.log(error);
+  }
   }
 };
 
