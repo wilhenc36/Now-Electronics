@@ -20,7 +20,9 @@ exports.formularioCrearCuenta = (req, res, next) => {
 exports.crearCuenta = async (req, res, next) => {
   // Verificar que no existan errores de validacion
   const errores = validationResult(req);
-  const erroresArray = [];
+  const messages = [];
+    // Obtener las variables desde el cuerpo de la petición
+    const { nombre, email, password } = req.body;
 
   //console.log(errores);
 
@@ -30,26 +32,29 @@ exports.crearCuenta = async (req, res, next) => {
     errores
     .array()
     .map((error) => 
-    erroresArray.push({ messages: error.msg, alertType: "danger" })
+    messages.push({ message: error.msg, alertType: "danger" })
     );
 
-    console.log(erroresArray);
+    //console.log(messages);
 
     // Agregar los errores a nuestro mensajes flash
-    req.flash("error", erroresArray);
+    req.flash("messages", messages);
 
+    res.redirect("/crear-cuenta");
+/*
     res.render("registrarse", {
       layout: "auth",
       typePage: "register-page",
       signButtonValue: "/iniciar-sesion",
       signButtonText: "Iniciar sesión",
       year,
-      messages: errores,
-    });
+      messages,
+      // TODO: Mostrar todo el valor del dato en el formulario
+      nombre,
+      email,
+      password,
+    });*/
   } else {
-    // Obtener las variables desde el cuerpo de la petición
-  const { nombre, email, password } = req.body;
-
   // Intentar almacenar los datos del usuario
   try {
     // Crear el usuario
@@ -62,12 +67,11 @@ exports.crearCuenta = async (req, res, next) => {
     });
 
     // Mostrar un mensaje
-    const mensaje = [];
-    mensaje.push({ 
+    messages.push({ 
       message: "Usuario creado!",
       alertType: "succes",
   });
-    req.flash("error", mensaje);
+    req.flash("error", messages);
 
     res.redirect("/iniciar-sesion");
   } catch (error) {
@@ -84,5 +88,6 @@ exports.formularioIniciarSesion = (req, res, next) =>{
     signButtonValue: "/crear-cuenta",
     signButtonText: "Regístrate",
     year,
+    messages: req.flash(),
   });
 };
