@@ -39,7 +39,13 @@ module.exports = () => {
     router.post("/iniciar-sesion", authController.autenticarUsuario);
 
     router.get("/olvide-password", authController.formularioRestablecerPassword);
-    
+
+    router.post("/olvide-password", authController.enviarToken);
+
+    router.get("/olvide-password/:token", authController.formularioNuevoPassword);
+
+    router.post("/olvide-password/:token", authController.almacenarNuevaPassword);
+
     //Rutas de administracion
     router.get("/administrar", (req, res, next) => {
         res.send("Administracion del sitio");
