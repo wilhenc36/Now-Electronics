@@ -10,26 +10,43 @@ passport.use(
     {
       usernameField: "email",
       passwordField: "password",
+      passReqToCallback: true,
     },
-    async (email, password, done) => {
+    async (req, email, password, done) => {
       // Verificar si el usuario existe en la BD
       const usuario = await Usuario.findOne({ email });
 
       // Si el usuario no existe
       if (!usuario) {
-        return done(null, false, {
-          message: ["¡El correo electrónico no se encuentra registrado!"],
-        });
+        return done(
+          null,
+          false,
+          req.flash("messages", [
+            {
+              message: "¡El correo electrónico no se encuentra registrado!",
+              alertType: "danger",
+            },
+          ])
+        );
       }
 
       // Si el usuario existe, verificar si la contraseña es correcta
-      const verificarPassword = usuario.comparePassword(password);
+      const verificarPassword = await usuario.comparePassword(password);
+
+      console.log(verificarPassword);
 
       // Si la contraseña es incorrecta
       if (!verificarPassword) {
-        return done(null, false, {
-          message: ["¡La contraseña ingresada es incorrecta!"],
-        });
+        return done(
+          null,
+          false,
+          req.flash("messages", [
+            {
+              message: "¡La contraseña ingresada es incorrecta!",
+              alertType: "danger",
+            },
+          ])
+        );
       }
 
       // El usuario existe y la contraseña enviada es correcta
@@ -43,13 +60,13 @@ passport.serializeUser((usuario, done) => done(null, usuario._id));
 
 // Deserializar el usuario desde la sesión
 passport.deserializeUser(async (id, done) => {
-  //try {
+  try {
     const usuario = await Usuario.findById(id).exec();
 
     return done(null, usuario);
-  //} catch (error) {
-    //console.log(error);
-  //}
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = passport;
