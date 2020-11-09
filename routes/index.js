@@ -10,7 +10,7 @@ const router = express.Router();
 module.exports = () => {
     // Rutas disponibles
     router.get("/", (req, res, next) => {
-        res.send("Bienvenido a Now Electronics!");
+        res.render("buscar");
     });
 
     // Rutas para usuario
