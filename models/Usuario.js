@@ -85,18 +85,7 @@ usuarioSchema.post("save", function (err, doc, next) {
 usuarioSchema.methods.comparePassword = function (candidatePassword) {
   const user = this;
 
-  return new Promise((resolve, reject) => {
-    // Comparar el password candidato con el password almacenado
-    bcrypt.compare(candidatePassword, user.password, (err, isMatch) => {
-      // Promesa incumplida
-      if (err) return reject(err);
-
-      // Promesa cumplida
-      if (!isMatch) return reject(err);
-
-      resolve(true);
-    });
-  }).catch(console.log("Error al momento de comparar los passwords"));
+  return bcrypt.compareSync(candidatePassword, user.password);
 };
 
 module.exports = mongoose.model("Usuarios", usuarioSchema);
