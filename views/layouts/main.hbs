@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  {{!-- Cargar Bootstrap desde el CDN --}}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  {{!-- Fuentes desde Google Fonts --}}
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  {{!-- Íconos desde Fontawesome --}}
+  <script src="https://kit.fontawesome.com/d7bc68b35c.js" crossorigin="anonymous"></script>
+  {{!-- Estilo personalizado --}}
+  <link href="/css/custom-styles.min.css?v=2.3.1" rel="stylesheet">
+  <title>Now Electronics</title>
+</head>
+
+<body class="search-page sidebar-collapse">
+  {{!-- Navbar --}}
+  <nav class="navbar navbar-expand-lg fixed-top bg-danger nav-down" color-on-scroll="500">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/" rel="tooltip" title="NowElectronics" data-placement="bottom">
+          Now Electronics
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" data-nav-image="../assets/img/blurred-image-1.jpg" data-color="blue">
+        <ul class="navbar-nav ml-auto">
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+              Administración </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-danger">
+              <a href="../index.html" class="dropdown-item">
+                Tu perfil
+              </a>
+              <a href="../presentation.html" class="dropdown-item">
+                Crear producto
+              </a>
+              <a href="https://demos.creative-tim.com/paper-kit-2-pro/docs/1.0/getting-started/introduction.html"
+                class="dropdown-item">
+                Ver productos
+              </a>
+            </div>
+          </li>
+          {{!-- Iniciar o cerrar sesión --}}
+          <li class="nav-item">
+            <a class="btn btn-round btn-danger" href="/iniciar-sesion">
+              <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {{!-- Contenido principal --}}
+  {{{body}}}
+
+  {{!-- Scripts requeridos por Bootstrap --}}
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
