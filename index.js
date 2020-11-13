@@ -5,7 +5,7 @@ require("./config/db");
 const exphbs = require("express-handlebars");
 const router = require("./routes/index");
 const bodyParser = require("body-parser");
-//const path = require("path");
+const path = require("path");
 const passport = require("./config/passport");
 const cookieParser = require("cookie-parser");
 const session  = require("express-session");
@@ -22,6 +22,8 @@ const app = express();
 app.engine("hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
 
 app.set("view engine", "hbs");
+// Llama los archivos de la carpeta public
+app.use(express.static(path.join(__dirname, "public")));
 
 // Crear sesion de usuario y la cooike encargada de almacenarla
 app.use(cookieParser());
