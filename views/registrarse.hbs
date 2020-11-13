@@ -1,44 +1,28 @@
-{{!-- Barra de navegación --}}
-<nav class="navbar">
-
-</nav>
-
-
-
 {{!-- Formulario de registro --}}
-<div class="div page-header">
-  <h2>.</h2>
-  <div class="container">
-     {{!-- Mensajes para el usario --}}
+<div class="page-header">
+  <div class="registrarse">
+    <h1>.</h1>
+    {{!-- Mensajes para el usario --}}
     {{>showMessages messages}}
-    <div class="row">
-      <div class="col-md-10 ml-auto mr-auto">
-        <div class="card card-signup">
-          <h2 class="card-title">Crea tu cuenta en Now Electronics</h2>
-          <div class="card-body">
-            <div class="row">
-              <form method="POST" class="register-form"  action="/registrarse">
-                <div class="form-group">
-                  <div class="input-group">
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" name="nombre" value={{nombre}}>
-                  </div>
-                  <div class="input-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" name="email" value={{email}}>
-                  </div>
-                  <div class="input-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" name="password" value={{password}}>
-                  </div>
-                </div>
-                <div class="input-group">
-                  <button type="submit" class="btn btn-primary">Registrarse</button>
-                </div>
-                <p>Ya tienes una cuenta? <a href="/iniciar-sesion">Inicia sesión</a></p>
-              </form>
-              </form>
-            </div>
+    <div class="form-registrarse">
+      <div class="loging-container">
+        <div class="register">
+          <h2>Registrate en<br> Now-Electronics</h2>
+          <form class="container" method="POST" action="/registrarse">
+            <input type="text" name="nombre" placeholder="Ingrese su Nombre" class="nombre" value={{nombre}}>
+            <input type="email" name="email" placeholder="Ingrese su Correo" class="correo" value={{email}}>
+            <input type="password" name="password" placeholder="Ingrese su Contraseña" class="pass" value={{password}}>
+            <button type="submit" class="submit">REGISTRARSE</button>
+            <p>Ya tienes una cuenta? <a href="/iniciar-sesion">Inicia sesión</a></p>
+          </form>
+        </div>
+        <div class="loging">
+          <h2>Registrate con Google</h2>
+          <div class="loging-items">
+            <br>
+            <button class="correo"><i class="fas fa-envelope"><a
+                  href="https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Faccounts.google.com%2FManageAccount%3Fnc%3D1&hl=es_ES&flowName=GlifWebSignIn&flowEntry=SignUp"></i>
+              Acceder con Google </button>
           </div>
         </div>
       </div>
