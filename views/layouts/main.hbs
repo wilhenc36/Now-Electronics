@@ -20,10 +20,12 @@
 
 <body class="search-page sidebar-collapse">
   {{!-- Navbar --}}
-  <nav class="navbar navbar-expand-lg fixed-top bg-danger nav-down" color-on-scroll="500">
+  <nav class="navbar navbar-expand-lg fixed-top bg-info nav-down" role="navigation" color-on-scroll="500">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="/" rel="tooltip" title="NowElectronics" data-placement="bottom">
+        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/" rel="tooltip" title="NowElectronics" data-placement="bottom" style="color: white;">
+        <img src="/img/logoo.png" width="30" height="30" class="d-inline-block align-top" alt="" >
           Now Electronics
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
@@ -36,7 +38,7 @@
       <div class="collapse navbar-collapse" data-nav-image="../assets/img/blurred-image-1.jpg" data-color="blue">
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" style="color: white;">
               Administración </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-danger">
               <a href="../index.html" class="dropdown-item">
@@ -53,10 +55,13 @@
           </li>
           {{!-- Iniciar o cerrar sesión --}}
           <li class="nav-item">
-            <a class="btn btn-round btn-danger" href="/iniciar-sesion">
+            <a class="btn btn-round btn-info" href="/iniciar-sesion">
               <i class="fas fa-sign-in-alt"></i> Iniciar sesión
             </a>
           </li>
+          <li class="nav-item">
+            <a class="btn btn-round btn-info" href="#">
+              <i class="fa fa-user"></i> Sobre nosotros</a></li>
         </ul>
       </div>
     </div>
@@ -76,5 +81,129 @@
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
 </body>
+
+<!-- Footer -->
+<footer class="page-footer font-small unique-color-dark">
+
+  <div style="background-color: #0A124A;">
+    <div class="container">
+
+      <!-- Grid row-->
+      <div class="row py-4 d-flex align-items-center">
+
+        <!-- Grid column -->
+        <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+          <h6 style="color: white;" class="mb-0">¡Conéctate con nosotros en las redes sociales!</h6>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+          <!-- Facebook -->
+          <a class="fb-ic" title="Danos like en Facebook" href="https://www.facebook.com/" target="_blank">
+            <i class="fab fa-facebook-f white-text mr-4"> </i>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic" title="Síguenos en Twitter" href="https://twitter.com/" target="_blank">
+            <i class="fab fa-twitter white-text mr-4"> </i>
+          </a>
+          <!-- Google +-->
+          <a class="gplus-ic"  title="nowelectronics001@gmail.com" href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" target="_blank">
+            <i class="fab fa-google-plus-g white-text mr-4"> </i>
+          </a> 
+          <!--Instagram-->
+          <a class="ins-ic" title="Síguenos en Instagram" href="https://www.instagram.com/" target="_blank">
+            <i class="fab fa-instagram white-text"> </i>
+          </a>
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row-->
+
+    </div>
+  </div>
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5">
+
+    <!-- Grid row -->
+    <div class="row mt-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+        <!-- Content -->
+        <h6 class="text-uppercase font-weight-bold">Now Electronics</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>En nuestra pagina encontraras los mejores productos electronicos.</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Productos</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a >Equipos de informática y telecomunicaciones</a>
+        </p>
+        <p>
+          <a >Aparatos electrónicos de consumo</a>
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Productos</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a >Aparatos de alumbrado</a>
+        </p>
+        <p>
+          <a >Instrumentos de vigilancia o control</a>
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Contacto</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <i class="fas fa-home mr-3"></i> Santa Rosa De Copán, Calle Centenario.</p>
+        <a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">
+          <i class="fas fa-envelope mr-3" ></i> nowelectronics001@gmail.com</a>
+        <p>
+          <i class="fas fa-phone mr-3"></i> 504 9649532</p>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Seminario De Software
+    <!--<a href="https://mdbootstrap.com/"> MDBootstrap.com</a> -->
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 
 </html>
