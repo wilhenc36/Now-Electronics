@@ -20,48 +20,48 @@
 
 <body class="search-page sidebar-collapse">
   {{!-- Navbar --}}
-  <nav class="navbar navbar-expand-lg fixed-top bg-info nav-down" role="navigation" color-on-scroll="500">
+  <nav class="navbar navbar-expand-lg fixed-top bg-transparent nav-down" role="navigation" color-on-scroll="500">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="#">
-        <a class="navbar-brand" href="/" rel="tooltip" title="NowElectronics" data-placement="bottom" style="color: white;">
-        <img src="/img/logoo.png" width="30" height="30" class="d-inline-block align-top" alt="" >
-          Now Electronics
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-          aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-bar bar1"></span>
-          <span class="navbar-toggler-bar bar2"></span>
-          <span class="navbar-toggler-bar bar3"></span>
-        </button>
+          <a class="navbar-brand" href="/" rel="tooltip" title="NowElectronics" data-placement="bottom"
+            style="color: #0A124A;">
+            <img src="/img/logoo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Now Electronics
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+            aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </button>
       </div>
       <div class="collapse navbar-collapse" data-nav-image="../assets/img/blurred-image-1.jpg" data-color="blue">
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" style="color: white;">
+            <a href="#" class="boton_personalizado" data-toggle="dropdown" aria-expanded="false">
               Administración </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-danger">
-              <a href="../index.html" class="dropdown-item">
+              <a href="/" class="dropdown-item">
                 Tu perfil
               </a>
-              <a href="../presentation.html" class="dropdown-item">
+              <a href="/crear-producto" class="dropdown-item">
                 Crear producto
               </a>
-              <a href="https://demos.creative-tim.com/paper-kit-2-pro/docs/1.0/getting-started/introduction.html"
-                class="dropdown-item">
+              <a href="/" class="dropdown-item">
                 Ver productos
               </a>
             </div>
           </li>
           {{!-- Iniciar o cerrar sesión --}}
           <li class="nav-item">
-            <a class="btn btn-round btn-info" href="/iniciar-sesion">
-              <i class="fas fa-sign-in-alt"></i> Iniciar sesión
-            </a>
+            <a class="boton_personalizado" href="/iniciar-sesion">
+              <i class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-round btn-info" href="#">
-              <i class="fa fa-user"></i> Sobre nosotros</a></li>
+            <a class="boton_personalizado" href="/sobreNosotros">
+              <i class="fa fa-user"></i> Sobre nosotros</a>
+              </li>
         </ul>
       </div>
     </div>
@@ -109,9 +109,11 @@
             <i class="fab fa-twitter white-text mr-4"> </i>
           </a>
           <!-- Google +-->
-          <a class="gplus-ic"  title="nowelectronics001@gmail.com" href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" target="_blank">
+          <a class="gplus-ic" title="nowelectronics001@gmail.com"
+            href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+            target="_blank">
             <i class="fab fa-google-plus-g white-text mr-4"> </i>
-          </a> 
+          </a>
           <!--Instagram-->
           <a class="ins-ic" title="Síguenos en Instagram" href="https://www.instagram.com/" target="_blank">
             <i class="fab fa-instagram white-text"> </i>
@@ -150,10 +152,10 @@
         <h6 class="text-uppercase font-weight-bold">Productos</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
         <p>
-          <a >Equipos de informática y telecomunicaciones</a>
+          <a>Equipos de informática y telecomunicaciones</a>
         </p>
         <p>
-          <a >Aparatos electrónicos de consumo</a>
+          <a>Aparatos electrónicos de consumo</a>
         </p>
 
       </div>
@@ -166,10 +168,10 @@
         <h6 class="text-uppercase font-weight-bold">Productos</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
         <p>
-          <a >Aparatos de alumbrado</a>
+          <a>Aparatos de alumbrado</a>
         </p>
         <p>
-          <a >Instrumentos de vigilancia o control</a>
+          <a>Instrumentos de vigilancia o control</a>
         </p>
 
       </div>
@@ -183,8 +185,9 @@
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
         <p>
           <i class="fas fa-home mr-3"></i> Santa Rosa De Copán, Calle Centenario.</p>
-        <a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">
-          <i class="fas fa-envelope mr-3" ></i> nowelectronics001@gmail.com</a>
+        <a
+          href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">
+          <i class="fas fa-envelope mr-3"></i> nowelectronics001@gmail.com</a>
         <p>
           <i class="fas fa-phone mr-3"></i> 504 9649532</p>
 
