@@ -81,7 +81,7 @@ exports.enviarToken = async (req, res, next) => {
       // Enviar la notificación al correo electrónico del usuario
       const sendMail = await enviarCorreo.enviarCorreo({
         to: usuario.email,
-        subject: "Restablece tu contraseña de Now Electronics",
+        subject: "Restablece tu contraseña en Cashize",
         template: "resetPassword",
         nombre: usuario.nombre,
         resetUrl,
@@ -209,4 +209,13 @@ exports.almacenarNuevaPassword = async (req, res, next) => {
 
     res.redirect("/olvide-password");
   }
+};
+
+// Verifica que el usuario se encuentre autenticado
+exports.verificarInicioSesion = (req, res, next) => {
+  // Si el usuario se encuentra autenticado que siga con el siguiente middleware
+  if (req.isAuthenticated()) return next();
+
+  // Si no se auntenticó, redireccionar al inicio de sesión
+  res.redirect("/iniciar-sesion");
 };
