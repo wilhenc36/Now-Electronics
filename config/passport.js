@@ -33,8 +33,6 @@ passport.use(
       // Si el usuario existe, verificar si la contraseña es correcta
       const verificarPassword = await usuario.comparePassword(password);
 
-      console.log(verificarPassword);
-
       // Si la contraseña es incorrecta
       if (!verificarPassword) {
         return done(

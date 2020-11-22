@@ -70,7 +70,6 @@ exports.crearCuenta = async (req, res, next) => {
 
 // Cargar el formulario de inicio de sesión
 exports.formularioIniciarSesion = (req, res, next) => {
-  console.log(req.flash());
   res.render("iniciarSesion", {
     layout: "auth",
     typePage: "login-page",
