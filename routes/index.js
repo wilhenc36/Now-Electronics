@@ -12,6 +12,7 @@ const router = express.Router();
 module.exports = () => {
   // Rutas disponibles
   router.get("/", homeController.mostrarProductos);
+
   // Rutas para usuario
   router.get("/crear-cuenta", usuarioController.formularioCrearCuenta);
 
@@ -50,8 +51,8 @@ module.exports = () => {
     res.send("Administración del sitio");
   });
 
-   // Rutas disponibles
-   router.get("/sobreNosotros", (req, res, next) => {
+  // Rutas sobreNosotros
+  router.get("/sobreNosotros", (req, res, next) => {
     res.render("sobreNosotros");
   });
 
@@ -87,6 +88,14 @@ module.exports = () => {
       check("precio", "Valor incorrecto en el precio del producto").isNumeric(),
     ],
     productoController.crearProducto
+  );
+
+  router.get("/producto/:url", productoController.verProducto);
+
+  router.get(
+    "/carrito/:url",
+    authController.verificarInicioSesion,
+    productoController.agregarProductoCarrito
   );
 
   return router;
