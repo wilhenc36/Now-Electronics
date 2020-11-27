@@ -1,0 +1,41 @@
+<br>
+<br>
+<br>
+<div class="page-header page-header-xs">
+  <div class="filter"></div>
+</div>
+<div class="main">
+  <div class="section">
+    <div class="container">
+      <div class="row title-row">
+        <div class="col-md-2">
+          <h4 class="shop">Comprar</h4>
+        </div>
+        <div class="col-md-4 ml-auto">
+          <div class="pull-right">
+            <span class="text-muted">Estado del carrito</span> <a href="#" class="btn btn-link"><i
+                class="fa fa-shopping-cart"></i> {{productosCarrito}} artículos</a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 col-sm-6">
+          <img src="../uploads/{{producto.imagen}}" cwidth="200" height="200" alt="Imagen del producto">
+        </div>
+        <div class="col-md-5 col-sm-6">
+          <h2>{{producto.nombre}}</h2>
+          <h4 class="price"><strong>L {{producto.precio}}</strong></h4>
+          <hr />
+          <p>{{producto.descripcion}}</p>
+          <h6>Vendedor: {{producto.vendedor.nombre}}</h6>
+          <hr />
+          <div class="row">
+            <div class="col-md-7 offset-md-5 col-sm-8">
+              <a href="/carrito/{{producto.url}}" class="btn btn-danger-btn-block-btn-round">Agregar al carrito</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

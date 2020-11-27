@@ -1,0 +1,18 @@
+{{!-- Formulario de inicio de sesion --}}
+<div class="page-header">
+<div class="login">
+ <h2>.</h2>
+    {{!-- Mensajes para el usario --}}
+    {{>showMessages messages}}
+    <div class="form-registrarse">
+  <form class="form-login" method="POST" action="/iniciar-sesion">
+    <h5>Iniciar sesión en Now Electronics</h5>
+    <input class="controls" type="email" name="email" placeholder="Ingrese su Correo">
+    <input class="controls" type="password" name="password" placeholder="Ingrese su Contraseña">
+    <button type="submit" class="buttons">INICIAR SESIÓN</button>
+    <a href="/olvide-password" class="btn btn-link">¿Olvidaste tu contraseña?</a>
+    <p>No tienes una cuenta? <a href="/crear-cuenta">Registrate</a></p>
+  </form>
+</div>
+</div>
+</div>

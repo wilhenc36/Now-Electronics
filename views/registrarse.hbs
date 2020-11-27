@@ -1,0 +1,31 @@
+{{!-- Formulario de registro --}}
+<div class="page-header">
+  <div class="registrarse">
+    <h1>.</h1>
+    {{!-- Mensajes para el usario --}}
+    {{>showMessages messages}}
+    <div class="form-registrarse">
+      <div class="loging-container">
+        <div class="register">
+          <h2>Registrate en<br> Now-Electronics</h2>
+          <form class="container" method="POST" action="/crear-cuenta">
+            <input type="text" name="nombre" placeholder="Ingrese su Nombre" class="nombre" value={{nombre}}>
+            <input type="email" name="email" placeholder="Ingrese su Correo" class="correo" value={{email}}>
+            <input type="password" name="password" placeholder="Ingrese su Contraseña" class="pass" value={{password}}>
+            <button type="submit" class="submit">REGISTRARSE</button>
+            <p>Ya tienes una cuenta? <a href="/iniciar-sesion">Inicia sesión</a></p>
+          </form>
+        </div>
+        <div class="loging">
+          <h2>Registrate con Google</h2>
+          <div class="loging-items">
+            <br>
+            <button class="correo"><i class="fas fa-envelope"><a
+                  href="https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Faccounts.google.com%2FManageAccount%3Fnc%3D1&hl=es_ES&flowName=GlifWebSignIn&flowEntry=SignUp"></i>
+              Acceder con Google </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
