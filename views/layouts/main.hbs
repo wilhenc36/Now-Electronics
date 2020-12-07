@@ -39,29 +39,42 @@
       <div class="collapse navbar-collapse" data-nav-image="../assets/img/blurred-image-1.jpg" data-color="blue">
         <ul class="navbar-nav ml-auto">
           <li class="dropdown nav-item">
-            <a href="#" class="boton_personalizado" data-toggle="dropdown" aria-expanded="false">
+            <a href="#" class="dropdown-toggle nav-link boton_personalizado" data-toggle="dropdown" aria-expanded="false">
               Administración </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-danger">
-              <a href="/" class="dropdown-item">
-                Tu perfil
-              </a>
-              <a href="/crear-producto" class="dropdown-item">
+              <a href="/crear-producto" class="boton_personalizado">
                 Crear producto
               </a>
-              <a href="/" class="dropdown-item">
+              <div class="dropdown-divider"></div>
+              <a href="/" class="boton_personalizado">
                 Ver productos
               </a>
             </div>
           </li>
           {{!-- Iniciar o cerrar sesión --}}
-          <li class="nav-item">
+          {{!--<li class="nav-item">
             <a class="boton_personalizado" href="/iniciar-sesion">
               <i class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
-          </li>
+          </li>--}}
           <li class="nav-item">
-            <a class="boton_personalizado" href="/sobreNosotros">
+            <a class=" nav-link boton_personalizado" href="/sobreNosotros">
               <i class="fa fa-user"></i> Sobre nosotros</a>
-              </li>
+          </li>
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link boton_personalizado" data-toggle="dropdown" aria-expanded="false">
+              Cuenta </a>
+            <div class="dropdown-menu">
+              {{#if login}} 
+                <a href="/perfil" class="boton_personalizado"> Tu perfil</a>
+                <div class="dropdown-divider"></div>
+                <a href="/cerrar-sesion" class="boton_personalizado">Cerrar sesión</a>
+              {{else}}  
+                <a href="/crear-cuenta" class="boton_personalizado">Regístrarse</a>
+                <div class="dropdown-divider"></div>
+                <a href="/iniciar-sesion" class="boton_personalizado">Iniciar sesión</a>
+              {{/if}}        
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -80,6 +93,10 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
+  <script src="/js/jasny-bootstrap.min.js"></script>
+  {{!-- Bootstrap tag input --}}
+  <script src="/js/bootstrap-tagsinput.js"></script>
+
 </body>
 
 <!-- Footer -->
