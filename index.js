@@ -54,6 +54,13 @@ app.use((req, res, next) => {
 // Habilitar body-parser para obtener el cuerpo de la petición
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Proteccion de rutas para las vistas
+app.use(function(req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
+  next();
+});
+
 //Implementar router
 app.use("/", router());
 
