@@ -35,23 +35,15 @@ exports.crearProducto = async (req, res, next) => {
     // Almacenar los valores del producto
     try {
       const { nombre, descripcion, precio, estado } = req.body;
-      const imagen = [];
 
-      for(let x=0; x< req.files.length; x++){
-        if(req.files.length > 0){
-          imagen[x]=req.files[x].filename;
-        }
-        //console.log(imagen[x]);
-      }
-     
       await Producto.create({
         nombre,
         descripcion,
         precio,
-        imagenes: imagen,
+        imagen: req.file.filename,
         vendedor: req.user._id,
       });
-        //console.log(req.files.length);
+
       messages.push({
         message: "¡Producto agregado correctamente!",
         alertType: "success",
@@ -178,7 +170,7 @@ exports.verProducto = async (req, res, next) => {
 };
 
 // Función que sube el archivo
-const upload = multer(configuracionMulter).array("imagen");
+const upload = multer(configuracionMulter).single("imagen");
 
 // Agrega productos al carrito de compras
 exports.agregarProductoCarrito = async (req, res, next) => {

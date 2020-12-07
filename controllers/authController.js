@@ -81,7 +81,7 @@ exports.enviarToken = async (req, res, next) => {
       // Enviar la notificación al correo electrónico del usuario
       const sendMail = await enviarCorreo.enviarCorreo({
         to: usuario.email,
-        subject: "Restablece tu contraseña para Now Electronics",
+        subject: "Restablece tu contraseña en Cashize",
         template: "resetPassword",
         nombre: usuario.nombre,
         resetUrl,
