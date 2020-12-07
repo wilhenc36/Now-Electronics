@@ -13,8 +13,6 @@ module.exports = () => {
   // Rutas disponibles
   router.get("/", homeController.mostrarProductos);
 
-  router.get("/cerrar-sesion", authController.cerrarSesion);
-
   // Rutas para usuario
   router.get("/crear-cuenta", usuarioController.formularioCrearCuenta);
 
@@ -52,9 +50,6 @@ module.exports = () => {
   router.get("/administrar", (req, res, next) => {
     res.send("Administración del sitio");
   });
-
-  //Cerrar Sesion
-router.get("/salir",authController.cerrarSesion);
 
   // Rutas sobreNosotros
   router.get("/sobreNosotros", (req, res, next) => {
