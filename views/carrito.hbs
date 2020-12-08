@@ -1,10 +1,13 @@
 <!-- Main Layout -->
+{{#if login}}
+{{#if producto}}
 <main>
     <!-- Main Container -->
     <div class="container">
         <section class="section my-5 pb-5">
             <!-- Shopping Cart table -->
             <div class="table-responsive">
+                {{#each producto}}
                 <table class="table product-table table-cart-v-1">
                     <!-- Table head -->
                     <thead>
@@ -13,9 +16,9 @@
                             <th class="font-weight-bold">
                                 <strong>Producto</strong>
                             </th>
-                            <th class="font-weight-bold">
+                            {{!-- <th class="font-weight-bold">
                                 <strong>Color</strong>
-                            </th>
+                            </th> --}}
                             <th></th>
                             <th class="font-weight-bold">
                                 <strong>Precio</strong>
@@ -35,56 +38,105 @@
                         <!-- First row -->
                         <tr>
                             <th scope="row">
-                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg"
-                                    alt="" class="img-fluid z-depth-0">
+                                <img src="../uploads/{{item.imagenes.[0]}}" alt="" class="img-fluid z-depth-0">
                             </th>
                             <td>
                                 <h5 class="mt-3">
-                                    <strong>iPhone</strong>
+                                    <strong>{{item.nombre}}</strong>
                                 </h5>
-                                <p class="text-muted">Apple</p>
+                                {{!-- <p class="text-muted">Apple</p> --}}
                             </td>
-                            <td>White</td>
+                            {{!-- <td>White</td> --}}
                             <td></td>
-                            <td>$800</td>
+                            <td>L. {{item.precio}}</td>
                             <td class="text-center text-md-left">
-                                <span class="qty">1 </span>
-                                <div class="btn-group radio-group ml-2" data-toggle="buttons">
+                                <span class="qty">{{qty}}</span>
+                                {{!-- <div class="btn-group radio-group ml-2" data-toggle="buttons">
                                     <label class="btn btn-sm btn-primary btn-rounded">
                                         <input type="radio" name="options" id="option1">&mdash;
                                     </label>
                                     <label class="btn btn-sm btn-primary btn-rounded">
                                         <input type="radio" name="options" id="option2">+
                                     </label>
-                                </div>
+                                </div> --}}
                             </td>
                             <td class="font-weight-bold">
-                                <strong>$800</strong>
+                                <strong>L. {{precio}}</strong>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip"
-                                    data-placement="top" title="Remove item">X
-                                </button>
+                                <li><a href="/reducir/{{this.item._id}}" type="button" class="btn btn-sm btn-primary"
+                                        data-toggle="tooltip" data-placement="top" title="Remove item">Quitar
+                                        producto</a>
+                                </li><br>
+                                <li><a href="/eliminar/{{this.item._id}}" type="button" class="btn btn-sm btn-primary"
+                                        data-toggle="tooltip" data-placement="top" title="Remove item">Quitar todos</a>
+                                </li>
                             </td>
                         </tr>
+                        {{/each}}
                         <!-- First row -->
                         <!-- Purchase row -->
                         <tr>
                             <td colspan="3"></td>
                             <td>
                                 <h4 class="mt-2">
-                                    <strong>Total</strong>
+                                    <strong>Total:</strong>
                                 </h4>
                             </td>
                             <td class="text-right">
                                 <h4 class="mt-2">
-                                    <strong>$2600</strong>
+                                    <strong>L. {{this.precioTotal}}</strong>
                                 </h4>
                             </td>
                             <td colspan="3" class="text-right">
-                                <button type="button" class="btn btn-primary btn-rounded">Completar compra
-                                    <i class="fas fa-angle-right right"></i>
-                                </button>
+                                <div id="paypal-button"></div>
+                                <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+                                <script>
+                                    paypal.Button.render({
+                                        // Configure environment
+                                        env: 'sandbox',
+                                        client: {
+                                            sandbox: 'AWLV4DZl7w7faE3xn785xS9dRoX-zCFzpEO44Fvo6prI-hIqzP1lw_h7Pdxicr469C-DeglxkpR35ZFr',
+                                            production: 'demo_production_client_id'
+                                        },
+                                        // Customize button (optional)
+                                        locale: 'en_US',
+                                        style: {
+                                            size: 'small',
+                                            color: 'gold',
+                                            shape: 'pill',
+                                        },
+
+                                        // Enable Pay Now checkout flow (optional)
+                                        commit: true,
+
+                                        // Set up a payment
+                                        payment: function (data, actions) {
+                                            return actions.payment.create({
+                                                transactions: [{
+                                                    amount: {
+                                                        total: {{ precioTotal }},
+                                                currency: 'USD'
+            }
+                                    }],
+                                        redirect_urls: {
+                                        return_url: '/pago',
+                                        cancel_url: 'https://example.com'
+                                    }
+        });
+        },
+                                    // Execute the payment
+                                    onAuthorize: function(data, actions) {
+                                        return actions.payment.execute().then(function () {
+                                            // Show a confirmation message to the buyer
+                                            window.alert('Gracias!');
+                                            actions.redirect();
+                                        });
+                                    }
+  }, '#paypal-button');
+
+                                </script>
+
                             </td>
                         </tr>
                         <!-- Purchase row -->
@@ -97,4 +149,6 @@
     </div>
     <!-- Main Container -->
 </main>
+{{/if}}
+{{/if}}
 <!-- Main Layout -->
