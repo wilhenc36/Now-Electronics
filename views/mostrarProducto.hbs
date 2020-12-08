@@ -34,6 +34,10 @@
         <!-- Carousel Wrapper -->
       </div>
       <div class="col-lg-5 mr-3 text-center text-md-left">
+         <div class="pull-right">
+            <span class="text-muted">Estado del carrito</span> <a href="/carrito" class="btn btn-link"><i
+                class="fa fa-shopping-cart"></i> {{session.carrito.cantidadTotal}} artículos</a>
+          </div>
         <h2
           class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
           <strong>{{producto.nombre}}</strong>
@@ -71,7 +75,7 @@
         <!-- Add to Cart -->
         <section class="color">
           <div class="mt-5">
-            <p class="grey-text">Elije tu color</p>
+            {{!-- <p class="grey-text">Elije tu color</p>
             <div class="row text-center text-md-left">
               <div class="col-md-4 col-12 ">
                 <!-- Radio group -->
@@ -94,8 +98,8 @@
                   <label for="radio102" class="form-check-label dark-grey-text">Red</label>
                 </div>
               </div>
-            </div>
-            <div class="mt-5">
+            </div> --}}
+            {{!-- <div class="mt-5">
               <p class="grey-text">Cantidad</p>
               <span class="qty">1 </span>
               <div class="btn-group radio-group ml-2" data-toggle="buttons">
@@ -106,10 +110,10 @@
                   <input type="radio" name="options" id="option2">+
                 </label>
               </div>
-            </div>
+            </div> --}}
             <div class="row mt-3 mb-4">
               <div class="col-md-12 text-center text-md-left text-md-right">
-                <a href="/carrito/{{producto.url}}" class="btn btn-primary btn-rounded">
+                <a href="/carrito/{{producto._id}}" class="btn btn-primary btn-rounded">
                   <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> Agregar al carrito</a>
               </div>
             </div>
