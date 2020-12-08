@@ -3,227 +3,351 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  {{!-- Cargar Bootstrap desde el CDN --}}
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  {{!-- Fuentes desde Google Fonts --}}
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  {{!-- Íconos desde Fontawesome --}}
-  <script src="https://kit.fontawesome.com/d7bc68b35c.js" crossorigin="anonymous"></script>
-  {{!-- Estilo personalizado --}}
-  <link href="/css/custom-styles.min.css?v=2.3.1" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Now Electronics</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="/css/mdb.min.css" rel="stylesheet">
+  <style>
+
+  </style>
 </head>
 
-<body class="search-page sidebar-collapse">
-  {{!-- Navbar --}}
-  <nav class="navbar navbar-expand-lg fixed-top bg-transparent nav-down" role="navigation" color-on-scroll="500">
-    <div class="container">
-      <div class="navbar-translate">
-        <a class="navbar-brand" href="#">
-          <a class="navbar-brand" href="/" rel="tooltip" title="NowElectronics" data-placement="bottom"
-            style="color: #0A124A;">
-            <img src="/img/logoo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            Now Electronics
+<body class="homepage-v1 hidden-sn white-skin animated">
+  <header>
+    <!-- Sidebar navigation -->
+    <ul id="slide-out" class="side-nav custom-scrollbar">
+      <!-- Logo -->
+      <li>
+        <div class="logo-wrapper waves-light">
+          <a href="/">
+            <img src="/img/logoo.jpeg" class="img-fluid flex-center">
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-            aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar bar1"></span>
-            <span class="navbar-toggler-bar bar2"></span>
-            <span class="navbar-toggler-bar bar3"></span>
-          </button>
-      </div>
-      <div class="collapse navbar-collapse" data-nav-image="../assets/img/blurred-image-1.jpg" data-color="blue">
-        <ul class="navbar-nav ml-auto">
-          <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link boton_personalizado" data-toggle="dropdown" aria-expanded="false">
-              Administración </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-danger">
-              <a href="/crear-producto" class="boton_personalizado">
-                Crear producto
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="/" class="boton_personalizado">
-                Ver productos
-              </a>
-            </div>
+        </div>
+      </li>
+      <!-- Logo -->
+      <!-- Social -->
+      <li>
+        <ul class="social">
+          <li>
+            <a class="fb-ic">
+              <i class="fab fa-facebook-f"> </i>
+            </a>
           </li>
-          {{!-- Iniciar o cerrar sesión --}}
-          {{!--<li class="nav-item">
-            <a class="boton_personalizado" href="/iniciar-sesion">
-              <i class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
-          </li>--}}
-          <li class="nav-item">
-            <a class=" nav-link boton_personalizado" href="/sobreNosotros">
-              <i class="fa fa-user"></i> Sobre nosotros</a>
+          <li>
+            <a class="pin-ic">
+              <i class="fab fa-pinterest"> </i>
+            </a>
           </li>
-          <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link boton_personalizado" data-toggle="dropdown" aria-expanded="false">
-              Cuenta </a>
-            <div class="dropdown-menu">
-              {{#if login}} 
-                <a href="/perfil" class="boton_personalizado"> Tu perfil</a>
-                <div class="dropdown-divider"></div>
-                <a href="/cerrar-sesion" class="boton_personalizado">Cerrar sesión</a>
-              {{else}}  
-                <a href="/crear-cuenta" class="boton_personalizado">Regístrarse</a>
-                <div class="dropdown-divider"></div>
-                <a href="/iniciar-sesion" class="boton_personalizado">Iniciar sesión</a>
-              {{/if}}        
-            </div>
+          <li>
+            <a class="gplus-ic">
+              <i class="fab fa-google-plus-g"> </i>
+            </a>
+          </li>
+          <li>
+            <a class="tw-ic">
+              <i class="fab fa-twitter"> </i>
+            </a>
           </li>
         </ul>
+      </li>
+      <!-- Social -->
+      <!-- Search Form -->
+      <li>
+        <form class="search-form" role="search">
+          <div class="form-group md-form mt-0 pt-1 waves-light">
+            <input type="text" class="form-control" placeholder="Buscar">
+          </div>
+        </form>
+      </li>
+      <!-- Search Form -->
+      <!-- Side navigation links -->
+      <li>
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a href="/" class="collapsible-header waves-effect">
+              <i class="far fa-bookmark"></i> Inicio
+            </a>
+          </li>
+          <li>
+            <a href="/carrito" class="collapsible-header waves-effect">
+              <i class="fas fa-shopping-cart"></i> Carrito
+            </a>
+          </li>
+          <li>
+            <a href="/categorias" class="collapsible-header waves-effect">
+              <i class="far fa-hand-pointer"></i> Categorias
+            </a>
+          </li>
+          <li>
+            <a href="/productos" class="collapsible-header waves-effect">
+              <i class="fas fa-camera-retro"></i> Productos
+            </a>
+          </li>
+          <li>
+            <a href="/contactar" class="collapsible-header waves-effect">
+              <i class="fas fa-envelope"></i> Contactar</a>
+          </li>
+        </ul>
+      </li>
+      <!-- Side navigation links -->
+      <div class="sidenav-bg mask-strong"></div>
+    </ul>
+    <!-- Sidebar navigation -->
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg  navbar-light scrolling-navbar white">
+      <div class="container">
+        <!-- SideNav slide-out button -->
+        <div class="float-left mr-2">
+          <a href="#" data-activates="slide-out" class="button-collapse">
+            <i class="fas fa-bars blue-text"></i>
+          </a>
+        </div>
+        <a class="navbar-brand font-weight-bold" href="/">
+          <strong>NOW ELECTRONICS</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+          aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light dark-grey-text font-weight-bold" href="/administrar">
+                <i class="fas fa-cog blue-text"></i> Administrar</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link dark-grey-text font-weight-bold" href="#" data-toggle="modal"
+                data-target="#cart-modal-ex">
+                <span class="badge danger-color">0</span>
+                <i class="fas fa-shopping-cart blue-text" aria-hidden="true"></i>
+                <span class="clearfix d-none d-sm-inline-block">Carrito</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light dark-grey-text font-weight-bold" href="/contactar">
+                <i class="fas fa-envelope blue-text"></i> Contactar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light dark-grey-text font-weight-bold" href="/iniciar-sesion">
+                <i class="fas fa-user blue-text"></i> Iniciar sesión</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+    <!-- Navbar -->
+  </header>
 
   {{!-- Contenido principal --}}
   {{{body}}}
 
-  {{!-- Scripts requeridos por Bootstrap --}}
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-    crossorigin="anonymous"></script>
-  <script src="/js/jasny-bootstrap.min.js"></script>
-  {{!-- Bootstrap tag input --}}
-  <script src="/js/bootstrap-tagsinput.js"></script>
+  <br>
+  <br>
+  <br>
 
+  <!-- Footer -->
+  <footer class="page-footer text-center text-md-left stylish-color-dark pt-0">
+    <div style="background-color: #7c94c4;">
+      <div class="container">
+        <!-- Grid row -->
+        <div class="row py-4 d-flex align-items-center">
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+            <h6 class="mb-0 white-text">Conéctate con nosotros a través de nuestras redes sociales!</h6>
+          </div>
+          <!-- Grid column -->
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-7 text-center text-md-right">
+            <!-- Facebook -->
+            <a class="fb-ic ml-0 px-2">
+              <i class="fab fa-facebook-f white-text"> </i>
+            </a>
+            <!-- Twitter -->
+            <a class="tw-ic px-2">
+              <i class="fab fa-twitter white-text"> </i>
+            </a>
+            <!-- Google + -->
+            <a class="gplus-ic px-2">
+              <i class="fab fa-google-plus-g white-text"> </i>
+            </a>
+            <!-- Linkedin -->
+            <a class="li-ic px-2">
+              <i class="fab fa-linkedin-in white-text"> </i>
+            </a>
+            <!-- Instagram -->
+            <a class="ins-ic px-2">
+              <i class="fab fa-instagram white-text"> </i>
+            </a>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </div>
+    <!-- Footer Links -->
+    <div class="container mt-5 mb-4 text-center text-md-left">
+      <div class="row mt-3">
+        <!-- First column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+          <h6 class="text-uppercase font-weight-bold">
+            <strong>NOW ELECTRONICS</strong>
+          </h6>
+          <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>Somos una empresa dedicada netamente a la comercialización de productos electronicos como de informativa.
+          </p>
+        </div>
+        <!-- First column -->
+        <!-- Second column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase font-weight-bold">
+            <strong>Productos</strong>
+          </h6>
+          <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <a href="#!">Electrónica</a>
+          </p>
+          <p>
+            <a href="#!">Cómputo</a>
+          </p>
+          <p>
+            <a href="#!">Seguridad</a>
+          </p>
+          <p>
+            <a href="#!">Lámparas</a>
+          </p>
+        </div>
+        <!-- Second column -->
+        <!-- Third column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase font-weight-bold">
+            <strong>Enlaces</strong>
+          </h6>
+          <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <a href="#!">Tú cuenta</a>
+          </p>
+          <p>
+            <a href="#!">Nosotros</a>
+          </p>
+          <p>
+            <a href="#!">Términos y condiciones</a>
+          </p>
+          <p>
+            <a href="#!">Ayuda</a>
+          </p>
+        </div>
+        <!-- Third column -->
+        <!-- Fourth column -->
+        <div class="col-md-4 col-lg-3 col-xl-3">
+          <h6 class="text-uppercase font-weight-bold">
+            <strong>Contáctanos</strong>
+          </h6>
+          <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <i class="fas fa-home mr-3"></i>Calle Centenario, Santa Rosa de Copán</p>
+          <p>
+            <i class="fas fa-envelope mr-3"></i>nowelectronics001@gmail.com</p>
+          <p>
+            <i class="fas fa-phone mr-3"></i> +504 9649 5321</p>
+          <p>
+            <i class="fas fa-print mr-3"></i> +01 234 567 89</p>
+        </div>
+        <!-- Fourth column -->
+      </div>
+    </div>
+    <!-- Footer Links -->
+    <!-- Copyright -->
+    <div class="footer-copyright py-3 text-center">
+      <div class="container-fluid">
+        © 2020 Copyright: <a href="/" target="_blank"> NowElectronics.com
+        </a>
+      </div>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+  <!-- Cart Modal -->
+  <div class="modal fade cart-modal" id="cart-modal-ex" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <!-- Content -->
+      <div class="modal-content">
+        <!-- Header -->
+        <div class="modal-header">
+          <h4 class="modal-title font-weight-bold dark-grey-text" id="myModalLabel">Tú carrito</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Body -->
+        <div class="modal-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Product 1</td>
+                <td>100$</td>
+                <td>
+                  <a>
+                    <i class="fas fa-eraser"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-primary btn-rounded btn-sm">Completar</button>
+        </div>
+        <!-- Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn blue darken-3 btn-rounded btn-sm" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      <!-- Content -->
+    </div>
+  </div>
+  <!-- Cart Modal -->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="/js/bootstrap.min.js">
+  </script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="/js/mdb.min.js"></script>
+  <script type="text/javascript">
+    /* WOW.js init */
+    new WOW().init();
+    // Tooltips Initialization
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    // Material Select Initialization
+    $(document).ready(function () {
+      $('.mdb-select').material_select();
+    });
+
+    // SideNav Initialization
+    $(".button-collapse").sideNav();
+
+  </script>
 </body>
-
-<!-- Footer -->
-<footer class="page-footer font-small unique-color-dark">
-
-  <div style="background-color: #0A124A;">
-    <div class="container">
-
-      <!-- Grid row-->
-      <div class="row py-4 d-flex align-items-center">
-
-        <!-- Grid column -->
-        <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-          <h6 style="color: white;" class="mb-0">¡Conéctate con nosotros en las redes sociales!</h6>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-6 col-lg-7 text-center text-md-right">
-
-          <!-- Facebook -->
-          <a class="fb-ic" title="Danos like en Facebook" href="https://www.facebook.com/" target="_blank">
-            <i class="fab fa-facebook-f white-text mr-4"> </i>
-          </a>
-          <!-- Twitter -->
-          <a class="tw-ic" title="Síguenos en Twitter" href="https://twitter.com/" target="_blank">
-            <i class="fab fa-twitter white-text mr-4"> </i>
-          </a>
-          <!-- Google +-->
-          <a class="gplus-ic" title="nowelectronics001@gmail.com"
-            href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
-            target="_blank">
-            <i class="fab fa-google-plus-g white-text mr-4"> </i>
-          </a>
-          <!--Instagram-->
-          <a class="ins-ic" title="Síguenos en Instagram" href="https://www.instagram.com/" target="_blank">
-            <i class="fab fa-instagram white-text"> </i>
-          </a>
-
-        </div>
-        <!-- Grid column -->
-
-      </div>
-      <!-- Grid row-->
-
-    </div>
-  </div>
-
-  <!-- Footer Links -->
-  <div class="container text-center text-md-left mt-5">
-
-    <!-- Grid row -->
-    <div class="row mt-3">
-
-      <!-- Grid column -->
-      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-
-        <!-- Content -->
-        <h6 class="text-uppercase font-weight-bold">Now Electronics</h6>
-        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>En nuestra pagina encontraras los mejores productos electronicos.</p>
-
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-
-        <!-- Links -->
-        <h6 class="text-uppercase font-weight-bold">Productos</h6>
-        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>
-          <a>Equipos de informática y telecomunicaciones</a>
-        </p>
-        <p>
-          <a>Aparatos electrónicos de consumo</a>
-        </p>
-
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-        <!-- Links -->
-        <h6 class="text-uppercase font-weight-bold">Productos</h6>
-        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>
-          <a>Aparatos de alumbrado</a>
-        </p>
-        <p>
-          <a>Instrumentos de vigilancia o control</a>
-        </p>
-
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-        <!-- Links -->
-        <h6 class="text-uppercase font-weight-bold">Contacto</h6>
-        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>
-          <i class="fas fa-home mr-3"></i> Santa Rosa De Copán, Calle Centenario.</p>
-        <a
-          href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">
-          <i class="fas fa-envelope mr-3"></i> nowelectronics001@gmail.com</a>
-        <p>
-          <i class="fas fa-phone mr-3"></i> 504 9649532</p>
-
-      </div>
-      <!-- Grid column -->
-
-    </div>
-    <!-- Grid row -->
-
-  </div>
-  <!-- Footer Links -->
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Seminario De Software
-    <!--<a href="https://mdbootstrap.com/"> MDBootstrap.com</a> -->
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
 
 </html>
