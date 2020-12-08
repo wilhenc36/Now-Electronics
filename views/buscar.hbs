@@ -373,6 +373,8 @@
 </section>
 
 <div class="container">
+  {{!-- Mensajes para el usuario --}}
+        {{> showMessages messages}}
   <div class="row">
     {{#each productos as |producto|}}
     <!-- Grid column -->
@@ -422,8 +424,8 @@
                 <strong>L. {{producto.precio}}</strong>
               </span>
               <span class="float-right">
-                <a class="" data-toggle="tooltip" data-placement="top" title="Agregar al carrito">
-                  <i class="fas fa-shopping-cart ml-3"></i>
+                <a href="/carrito/{{producto._id}}" class="" data-toggle="tooltip" data-placement="top" title="Agregar al carrito">
+                  <i class="fas fa-shopping-cart ml-3 red-text"></i>
                 </a>
               </span>
             </div>
