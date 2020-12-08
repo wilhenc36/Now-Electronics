@@ -53,8 +53,8 @@ module.exports = () => {
     res.send("Administración del sitio");
   });
 
-    //Cerrar Sesion
-    router.get("/salir", authController.cerrarSesion);
+  //Cerrar Sesion
+  router.get("/salir", authController.cerrarSesion);
 
   // Rutas sobreNosotros
   router.get("/sobreNosotros", (req, res, next) => {
@@ -95,13 +95,19 @@ module.exports = () => {
     productoController.crearProducto
   );
 
-  router.get("/producto/:url", authController.verificarInicioSesion, productoController.verProducto);
+  router.get(
+    "/producto/:url",
+    authController.verificarInicioSesion,
+    productoController.verProducto
+  );
 
   router.get(
     "/carrito/:url",
     authController.verificarInicioSesion,
     productoController.agregarProductoCarrito
   );
+
+  router.get("/carrito", (req, res, next) => res.render("carrito"));
 
   return router;
 };
