@@ -12,11 +12,37 @@ const session  = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 
+const cors = require('cors')
+const cookieSession = require('cookie-session')
+require('./config/passport');
+
+
 //Habilitar el archivo de variables de entorno
 require("dotenv").config({ path: ".env" });
 
 // Crear un servidor utilizando express
-const app = express();
+const app = express()
+
+
+//Hertder
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+
+app.use(cookieSession({
+  name: 'tuto-session',
+  keys: ['key1', 'key2']
+}))
+
+const isLoggedIn = (req, res, next) => {
+  if (req.user) {
+      next();
+  } else {
+      res.sendStatus(401);
+  }
+}
+//-----
 
 // Habilitar Handlebars como nuestro template engine
 app.engine("hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
@@ -41,6 +67,38 @@ app.use(
 // Habilitar passport y la estrategia local
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+
+//hertder
+
+
+app.get('/failed', (req, res) => res.send('/crear-cuenta'))
+
+// In this route you can see that if the user is logged in u can acess his info in: req.user
+app.get('/good', isLoggedIn, (req, res) => res.send(`Welcome mr ${req.user.displayName}!`))
+
+// Auth Routes
+app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/Index');
+  }
+);
+
+app.get('/logout', (req, res) => {
+    req.session = null;
+    req.logout();
+    res.redirect('/');
+})
+
+//app.listen(5000, () => console.log(`Example app listening on port ${5000}!`))
+
+//-------
+
+
 
 // Habilitar los mensajes flash
 app.use(flash());
