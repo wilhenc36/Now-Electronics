@@ -22,7 +22,7 @@ exports.crearCuenta = async (req, res, next) => {
   const errores = validationResult(req);
   const messages = [];
   // Obtener las variables desde el cuerpo de la petición
-  const { nombre, email, password } = req.body;
+  const { nombre, email, password, rol, } = req.body;
 
   // Si hay errores
   if (!errores.isEmpty()) {
@@ -47,6 +47,7 @@ exports.crearCuenta = async (req, res, next) => {
         email,
         password,
         nombre,
+        rol,
       });
 
       // Mostrar un mensaje
