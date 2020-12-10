@@ -55,12 +55,65 @@ module.exports = () => {
     res.send("Administración del sitio");
   });
 
+   // Rutas de administración
+   router.get("/mapa", (req, res, next) => {
+
+    //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre; 
+  if(req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if(rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if(req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if(rol == "admin") {
+      admin = true;
+    }
+  }
+  if(req.isAuthenticated() != true) {
+    miron = true;
+  }
+
+    res.render("mapa", { usuario, admin, miron, nombre });
+  });
+
   //Cerrar Sesion
   router.get("/salir", authController.cerrarSesion);
 
   // Rutas sobreNosotros
   router.get("/sobreNosotros", (req, res, next) => {
-    res.render("sobreNosotros");
+
+    //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre; 
+  if(req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if(rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if(req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if(rol == "admin") {
+      admin = true;
+    }
+  }
+  if(req.isAuthenticated() != true) {
+    miron = true;
+  }
+
+    res.render("sobreNosotros",  { usuario, admin, miron, nombre });
   });
 
   // Rutas para productos
@@ -122,11 +175,35 @@ module.exports = () => {
   });
 
   router.get("/carrito", authController.verificarInicioSesion, function (req, res, next) {
+
+    //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre; 
+  if(req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if(rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if(req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if(rol == "admin") {
+      admin = true;
+    }
+  }
+  if(req.isAuthenticated() != true) {
+    miron = true;
+  }
+
     if (!req.session.carrito) {
       return res.render("carrito", { producto: null });
     }
     var carrito = new Carrito(req.session.carrito);
-    res.render("carrito", { producto: carrito.generarArray(), precioTotal: carrito.precioTotal });
+    res.render("carrito", { producto: carrito.generarArray(), precioTotal: carrito.precioTotal, usuario, admin, miron, nombre });
   });
 
   router.get('/eliminar/:id', (req, res, next) => {
