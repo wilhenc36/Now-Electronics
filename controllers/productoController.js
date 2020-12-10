@@ -10,7 +10,31 @@ const year = new Date().getFullYear();
 
 // Mostrar el formulario de creación de producto
 exports.formularioCrearProducto = (req, res, next) => {
-  res.render("crearProducto", {
+
+  //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre; 
+  if(req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if(rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if(req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if(rol == "admin") {
+      admin = true;
+    }
+  }
+  if(req.isAuthenticated() != true) {
+    miron = true;
+  }
+
+  res.render("crearProducto" , { usuario, admin, miron, nombre,
     year,
   });
 };
@@ -160,6 +184,30 @@ const configuracionMulter = {
 
 // Muestra un producto que se obtiene a través de su URL
 exports.verProducto = async (req, res, next) => {
+
+   //roles
+   var usuario = false;
+   var admin = false;
+   var miron = false;
+   var rol, nombre; 
+   if(req.isAuthenticated()) {
+     rol = req.user.rol;
+     nombre = req.user.nombre;
+     if(rol == "usuario") {
+       usuario = true;
+     }
+   }
+   if(req.isAuthenticated()) {
+     rol = req.user.rol;
+     nombre = req.user.nombre;
+     if(rol == "admin") {
+       admin = true;
+     }
+   }
+   if(req.isAuthenticated() != true) {
+     miron = true;
+   } 
+
   // Utilizar la opción populate para obtener información sobre un Object_ID
   const producto = await Producto.findOne({ url: req.params.url })
     .populate("vendedor")
@@ -170,7 +218,7 @@ exports.verProducto = async (req, res, next) => {
 
   if (!producto) res.redirect("/");
   else {
-    res.render("mostrarProducto", {
+    res.render("mostrarProducto", { usuario, admin, miron, nombre,
       producto
       //productosCarrito: carrito ? carrito.producto.length : 0,
     });
