@@ -22,7 +22,7 @@ exports.crearCuenta = async (req, res, next) => {
   const errores = validationResult(req);
   const messages = [];
   // Obtener las variables desde el cuerpo de la petición
-  const { nombre, email, password, rol, } = req.body;
+  const { nombre, email, password, rol } = req.body;
 
   // Si hay errores
   if (!errores.isEmpty()) {
@@ -77,5 +77,40 @@ exports.formularioIniciarSesion = (req, res, next) => {
     signButtonValue: "/crear-cuenta",
     signButtonText: "Regístrate",
     year,
+  });
+};
+
+exports.perfil = async (req, res, next) => {
+  //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre;
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "admin") {
+      admin = true;
+    }
+  }
+  if (req.isAuthenticated() != true) {
+    miron = true;
+  }
+
+  const Usuarios = await Usuario.find(req.user).lean();
+  console.log(Usuarios);
+  res.render("perfil", {
+    Usuarios,
+    usuario,
+    admin,
+    miron,
+    nombre,
   });
 };
