@@ -83,6 +83,8 @@ module.exports = () => {
     res.render("mapa", { usuario, admin, miron, nombre });
   });
 
+  router.post("/mapa", authController.recibirCorreo);
+
   //Cerrar Sesion
   router.get("/salir", authController.cerrarSesion);
 

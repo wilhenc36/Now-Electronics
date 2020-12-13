@@ -5,12 +5,12 @@ const hbs = require("nodemailer-express-handlebars");
 const util = require("util");
 
 var transport = nodemailer.createTransport({
-  service:'gmail',
+  service: "gmail",
   secure: false,
-  auth:{
+  auth: {
     user: process.env.GMAIL,
     pass: process.env.GMAILPASS,
-  }
+  },
 });
 
 /*
@@ -25,7 +25,7 @@ const transport = nodemailer.createTransport({
     },
   });*/
 
-  // Template para el envío del correo
+// Template para el envío del correo
 transport.use(
   "compile",
   hbs({
@@ -43,16 +43,17 @@ transport.use(
 // Encabezado del correo electrónico
 exports.enviarCorreo = async (opciones) => {
   const opcionesCorreo = {
-  from:'nowelectronics001@gmail.com',
-  to: opciones.to,
-  subject: opciones.subject,
-  template: opciones.template,
-  context: {
-    resetUrl: opciones.resetUrl,
-    nombre: opciones.nombre,
-  },
-};
-/*
+    from: "nowelectronics001@gmail.com",
+    to: opciones.to,
+    subject: opciones.subject,
+    template: opciones.template,
+    context: {
+      resetUrl: opciones.resetUrl,
+      nombre: opciones.nombre,
+    },
+  };
+
+  /*
 transport.sendMail(opcionesCorreo, function(err, info){
   if(err){
     console.log(err);
@@ -62,7 +63,7 @@ transport.sendMail(opcionesCorreo, function(err, info){
   }
 });*/
 
-/*
+  /*
 // Encabezado del correo electrónico
 exports.enviarCorreo = async (opciones) => {
   console.log(opciones);
@@ -77,7 +78,27 @@ exports.enviarCorreo = async (opciones) => {
       },
 };*/
 
-// Enviar el correo mediante una promesa
-const sendMail = util.promisify(transport.sendMail, transport);
-return sendMail.call(transport, opcionesCorreo);
+  // Enviar el correo mediante una promesa
+  const sendMail = util.promisify(transport.sendMail, transport);
+  return sendMail.call(transport, opcionesCorreo);
+};
+
+exports.recibirCorreo = async (opciones) => {
+  const opcionesCorreo = {
+    from: opciones.from,
+    to: "nowelectronics001@gmail.com",
+    subject: opciones.subject,
+    template: opciones.template,
+    context: {
+      nombre: opciones.nombre,
+      email: opciones.email,
+      telefono: opciones.telefono,
+      empresa: opciones.empresa,
+      mensaje: opciones.mensaje,
+    },
+  };
+
+  // Enviar el correo mediante una promesa
+  const sendMail = util.promisify(transport.sendMail, transport);
+  return sendMail.call(transport, opcionesCorreo);
 };

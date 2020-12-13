@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const crypto = require("crypto");
 const Usuario = mongoose.model("Usuarios");
 const enviarCorreo = require("../handlers/email");
+const recibirCorreo = require("../handlers/email");
 const { send } = require("process");
 
 // Se encarga de autenticar el usuario y de redireccionarlo
@@ -218,4 +219,37 @@ exports.verificarInicioSesion = (req, res, next) => {
 
   // Si no se auntenticó, redireccionar al inicio de sesión
   res.redirect("/iniciar-sesion");
+};
+
+exports.recibirCorreo = async (req, res, next) => {
+  // Obtener la direccción de correo electrónico
+  const { nombre, email, telefono, empresa, asunto, mensaje } = req.body;
+  const messages = [];
+
+  try {
+    // Enviar la notificación al correo electrónico del usuario
+    const sendMail = await recibirCorreo.recibirCorreo({
+      from: email,
+      to: "nowelectronics001@gmail.com",
+      subject: asunto,
+      template: "contactanos",
+      nombre: nombre,
+      email: email,
+      telefono: telefono,
+      empresa: empresa,
+      mensaje: mensaje,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  // Redireccionar al inicio de sesión
+  messages.push({
+    message: "¡Gracias por contactarte con nosotros!",
+    alertType: "success",
+  });
+
+  req.flash("messages", messages);
+
+  res.redirect("/mapa");
 };
