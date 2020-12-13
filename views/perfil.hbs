@@ -2,14 +2,50 @@
 <br>
 <br>
 <br>
+<br>
+<br>
 <div class="container">
-    <h2>Tú perfil</h2>
-    {{#each Usuarios as |usuario|}}
-    <span>Nombre: </span><input type="text" name="nombre" value="{{usuario.nombre}}">
-    <span>Correo electronico: </span><input type="text" name="email" value="{{usuario.email}}">
-    <span>Contraseña: </span><input type="password" name="contraseña" value="{{usuario.password}}">
-    <span>Rol: </span><input type="text" name="rol" value="{{usuario.rol}}" disabled="true">
-    <span>Ciudad: </span><input type="text" name="ciudad" value="{{usuario.ciudad}}">
-    <span>Pais: </span><input type="text" name="pais" value="{{usuario.pais}}">
-    {{/each}}
+    <div class=" card wow fadeIn" data-wow-delay="0.3s">
+        <div class="card-body">
+            <!--Header-->
+            <div class="form-header purple-gradient">
+                <h3><i class="fas fa-user mt-2 mb-2"></i> Perfil de usuario</h3>
+            </div>
+            <!--Body-->
+            {{#each Usuarios as |usuario|}}
+            <div class="md-form">
+                <i class="fas fa-user prefix brown-text"></i>
+                <input type="text" name="nombre" class="nombre" value={{nombre}}>
+            </div>
+            <div class="md-form">
+                <i class="fas fa-envelope prefix brown-text"></i>
+                <input type="email" name="email" class="correo" value={{email}}>
+            </div>
+            <div class="md-form">
+                <i class="fas fa-lock prefix brown-text"></i>
+                <input type="password" name="password" class="pass" value={{password}}>
+            </div>
+            <div class="md-form">
+                <i class="fas fa-envelope prefix brown-text"></i>
+                <input type="text" name="rol" class="correo" value={{rol}} disabled="true">
+            </div>
+            <div class="md-form">
+                <i class="fas fa-envelope prefix brown-text"></i>
+                <input type="text" name="ciudad" class="correo" value={{ciudad}}>
+            </div>
+            <div class="md-form">
+                <i class="fas fa-envelope prefix brown-text"></i>
+                <input type="text" name="pais" class="correo" value={{pais}}>
+            </div>
+            <div class="md-form">
+                <i class="fas fa-envelope prefix brown-text"></i>
+                <input type="text" name="fechaRegistro" class="nombre" value={{fechaRegistro}}>
+            </div>
+            {{/each}}
+            <div class="text-center">
+                <button type="submit" class="btn purple-gradient btn-lg">Guardar</button>
+                <hr>
+            </div>
+        </div>
+    </div>
 </div>
