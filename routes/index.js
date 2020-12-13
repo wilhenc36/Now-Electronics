@@ -55,31 +55,30 @@ module.exports = () => {
     res.send("Administración del sitio");
   });
 
-   // Rutas de administración
-   router.get("/mapa", (req, res, next) => {
-
+  // Rutas de administración
+  router.get("/mapa", (req, res, next) => {
     //roles
-  var usuario = false;
-  var admin = false;
-  var miron = false;
-  var rol, nombre; 
-  if(req.isAuthenticated()) {
-    rol = req.user.rol;
-    nombre = req.user.nombre;
-    if(rol == "usuario") {
-      usuario = true;
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
     }
-  }
-  if(req.isAuthenticated()) {
-    rol = req.user.rol;
-    nombre = req.user.nombre;
-    if(rol == "admin") {
-      admin = true;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
     }
-  }
-  if(req.isAuthenticated() != true) {
-    miron = true;
-  }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
 
     res.render("mapa", { usuario, admin, miron, nombre });
   });
@@ -89,31 +88,30 @@ module.exports = () => {
 
   // Rutas sobreNosotros
   router.get("/sobreNosotros", (req, res, next) => {
-
     //roles
-  var usuario = false;
-  var admin = false;
-  var miron = false;
-  var rol, nombre; 
-  if(req.isAuthenticated()) {
-    rol = req.user.rol;
-    nombre = req.user.nombre;
-    if(rol == "usuario") {
-      usuario = true;
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
     }
-  }
-  if(req.isAuthenticated()) {
-    rol = req.user.rol;
-    nombre = req.user.nombre;
-    if(rol == "admin") {
-      admin = true;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
     }
-  }
-  if(req.isAuthenticated() != true) {
-    miron = true;
-  }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
 
-    res.render("sobreNosotros",  { usuario, admin, miron, nombre });
+    res.render("sobreNosotros", { usuario, admin, miron, nombre });
   });
 
   // Rutas para productos
@@ -150,86 +148,104 @@ module.exports = () => {
     productoController.crearProducto
   );
 
-  router.get("/producto/:url", authController.verificarInicioSesion, productoController.verProducto);
+  router.get(
+    "/producto/:url",
+    authController.verificarInicioSesion,
+    productoController.verProducto
+  );
 
-  router.get("/carrito/:id", authController.verificarInicioSesion, function (req, res, next) {
-    var productoId = req.params.id;
-    var carrito = new Carrito(req.session.carrito ? req.session.carrito : {});
+  router.get(
+    "/carrito/:id",
+    authController.verificarInicioSesion,
+    function (req, res, next) {
+      var productoId = req.params.id;
+      var carrito = new Carrito(req.session.carrito ? req.session.carrito : {});
 
-    Producto.findById(productoId, function (err, producto) {
-      if (err) {
-        return res.redirect("/");
+      Producto.findById(productoId, function (err, producto) {
+        if (err) {
+          return res.redirect("/");
+        }
+        carrito.add(producto, producto.id);
+        req.session.carrito = carrito;
+        console.log(req.session.carrito);
+        res.redirect("/");
+      });
+      req.flash("messages", [
+        {
+          message: "Producto agregado a tu carrito de compras",
+          alertType: "success",
+        },
+      ]);
+    }
+  );
+
+  router.get(
+    "/carrito",
+    authController.verificarInicioSesion,
+    function (req, res, next) {
+      //roles
+      var usuario = false;
+      var admin = false;
+      var miron = false;
+      var rol, nombre;
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "usuario") {
+          usuario = true;
+        }
       }
-      carrito.add(producto, producto.id);
-      req.session.carrito = carrito;
-      console.log(req.session.carrito);
-      res.redirect("/");
-    });
-    req.flash("messages", [
-      {
-        message: "Producto agregado a tu carrito de compras",
-        alertType: "success",
-      },
-    ]);
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "admin") {
+          admin = true;
+        }
+      }
+      if (req.isAuthenticated() != true) {
+        miron = true;
+      }
 
-  });
-
-  router.get("/carrito", authController.verificarInicioSesion, function (req, res, next) {
-
-    //roles
-  var usuario = false;
-  var admin = false;
-  var miron = false;
-  var rol, nombre; 
-  if(req.isAuthenticated()) {
-    rol = req.user.rol;
-    nombre = req.user.nombre;
-    if(rol == "usuario") {
-      usuario = true;
+      if (!req.session.carrito) {
+        return res.render("carrito", { producto: null });
+      }
+      var carrito = new Carrito(req.session.carrito);
+      res.render("carrito", {
+        producto: carrito.generarArray(),
+        precioTotal: carrito.precioTotal,
+        usuario,
+        admin,
+        miron,
+        nombre,
+      });
     }
-  }
-  if(req.isAuthenticated()) {
-    rol = req.user.rol;
-    nombre = req.user.nombre;
-    if(rol == "admin") {
-      admin = true;
-    }
-  }
-  if(req.isAuthenticated() != true) {
-    miron = true;
-  }
+  );
 
-    if (!req.session.carrito) {
-      return res.render("carrito", { producto: null });
-    }
-    var carrito = new Carrito(req.session.carrito);
-    res.render("carrito", { producto: carrito.generarArray(), precioTotal: carrito.precioTotal, usuario, admin, miron, nombre });
-  });
-
-  router.get('/eliminar/:id', (req, res, next) => {
+  router.get("/eliminar/:id", (req, res, next) => {
     var productoId = req.params.id;
-    var carrito = new Carrito(req.session.carrito ? req.session.carrito : { items: {} });
+    var carrito = new Carrito(
+      req.session.carrito ? req.session.carrito : { items: {} }
+    );
     carrito.eliminarItems(productoId);
     req.session.carrito = carrito;
-    res.redirect('/carrito');
-
+    res.redirect("/carrito");
   });
 
-  router.get('/reducir/:id', (req, res, next) => {
+  router.get("/reducir/:id", (req, res, next) => {
     var productoId = req.params.id;
-    var carrito = new Carrito(req.session.carrito ? req.session.carrito : { items: {} });
+    var carrito = new Carrito(
+      req.session.carrito ? req.session.carrito : { items: {} }
+    );
     carrito.reducirItem(productoId);
     req.session.carrito = carrito;
-    res.redirect('/carrito');
-
+    res.redirect("/carrito");
   });
 
-  router.get("/pago", function(req, res, next) {
+  router.get("/pago", function (req, res, next) {
     //var carrito = new Carrito(req.session.carrito);
-    
-    
-      req.session.carrito = null;
-      return res.render("pago")
+
+    req.session.carrito = null;
+    return res.render("pago");
   });
 
   /*
@@ -239,5 +255,41 @@ module.exports = () => {
       productoController.agregarProductoCarrito
     );
   */
+
+  router.get("/terminos-y-condiciones", (req, res, next) => {
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
+
+    res.render("terminosCondiciones", { usuario, admin, miron, nombre });
+  });
+
+  router.get("/productos/busqueda/", productoController.busqueda);
+
+  router.get(
+    "/perfil",
+    authController.verificarInicioSesion,
+    usuarioController.perfil
+  );
+
   return router;
 };
