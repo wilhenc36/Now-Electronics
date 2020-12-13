@@ -7,7 +7,6 @@
         <section class="section my-5 pb-5">
             <!-- Shopping Cart table -->
             <div class="table-responsive">
-                {{#each producto}}
                 <table class="table product-table table-cart-v-1">
                     <!-- Table head -->
                     <thead>
@@ -34,6 +33,7 @@
                     </thead>
                     <!-- Table head -->
                     <!-- Table body -->
+                    {{#each producto}}
                     <tbody>
                         <!-- First row -->
                         <tr>
@@ -65,11 +65,11 @@
                             </td>
                             <td>
                                 <li><a href="/reducir/{{this.item._id}}" type="button" class="btn btn-sm btn-primary"
-                                        data-toggle="tooltip" data-placement="top" title="Remove item">Quitar
+                                        data-toggle="tooltip" data-placement="top" title="Quitar producto">Quitar
                                         producto</a>
                                 </li><br>
                                 <li><a href="/eliminar/{{this.item._id}}" type="button" class="btn btn-sm btn-primary"
-                                        data-toggle="tooltip" data-placement="top" title="Remove item">Quitar todos</a>
+                                        data-toggle="tooltip" data-placement="top" title="Quitar todos">Quitar todos</a>
                                 </li>
                             </td>
                         </tr>
