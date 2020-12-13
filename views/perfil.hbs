@@ -1,0 +1,15 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <h2>Tú perfil</h2>
+    {{#each Usuarios as |usuario|}}
+    <span>Nombre: </span><input type="text" name="nombre" value="{{usuario.nombre}}">
+    <span>Correo electronico: </span><input type="text" name="email" value="{{usuario.email}}">
+    <span>Contraseña: </span><input type="password" name="contraseña" value="{{usuario.password}}">
+    <span>Rol: </span><input type="text" name="rol" value="{{usuario.rol}}" disabled="true">
+    <span>Ciudad: </span><input type="text" name="ciudad" value="{{usuario.ciudad}}">
+    <span>Pais: </span><input type="text" name="pais" value="{{usuario.pais}}">
+    {{/each}}
+</div>
