@@ -294,7 +294,6 @@ exports.busqueda = async (req, res, next) => {
   const productos = await Producto.find({
     nombre: new RegExp(req.query.nombre, "i"),
   }).lean();
-  console.log(productos);
   //roles
   var usuario = false;
   var admin = false;
