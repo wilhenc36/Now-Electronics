@@ -10,33 +10,30 @@ const year = new Date().getFullYear();
 
 // Mostrar el formulario de creación de producto
 exports.formularioCrearProducto = (req, res, next) => {
-
   //roles
   var usuario = false;
   var admin = false;
   var miron = false;
-  var rol, nombre; 
-  if(req.isAuthenticated()) {
+  var rol, nombre;
+  if (req.isAuthenticated()) {
     rol = req.user.rol;
     nombre = req.user.nombre;
-    if(rol == "usuario") {
+    if (rol == "usuario") {
       usuario = true;
     }
   }
-  if(req.isAuthenticated()) {
+  if (req.isAuthenticated()) {
     rol = req.user.rol;
     nombre = req.user.nombre;
-    if(rol == "admin") {
+    if (rol == "admin") {
       admin = true;
     }
   }
-  if(req.isAuthenticated() != true) {
+  if (req.isAuthenticated() != true) {
     miron = true;
   }
 
-  res.render("crearProducto" , { usuario, admin, miron, nombre,
-    year,
-  });
+  res.render("crearProducto", { usuario, admin, miron, nombre, year });
 };
 
 // Crear un producto
@@ -61,13 +58,13 @@ exports.crearProducto = async (req, res, next) => {
       const { nombre, descripcion, precio, estado } = req.body;
       const imagen = [];
 
-      for(let x=0; x< req.files.length; x++){
-        if(req.files.length > 0){
-          imagen[x]=req.files[x].filename;
+      for (let x = 0; x < req.files.length; x++) {
+        if (req.files.length > 0) {
+          imagen[x] = req.files[x].filename;
         }
         //console.log(imagen[x]);
       }
-     
+
       await Producto.create({
         nombre,
         descripcion,
@@ -75,7 +72,7 @@ exports.crearProducto = async (req, res, next) => {
         imagenes: imagen,
         vendedor: req.user._id,
       });
-        //console.log(req.files.length);
+      //console.log(req.files.length);
       messages.push({
         message: "¡Producto agregado correctamente!",
         alertType: "success",
@@ -102,48 +99,48 @@ exports.subirImagen = (req, res, next) => {
   //const errores = [];
   const messages = [];
 
-   if (!errores.isEmpty) {
-     errores.array().map((error) => {
-       messages.push({ message: error.msg, alertType: "danger" });
-     });
+  if (!errores.isEmpty) {
+    errores.array().map((error) => {
+      messages.push({ message: error.msg, alertType: "danger" });
+    });
 
-     req.flash("messages", messages);
-     res.redirect("/crear-producto");
-   } else {
-  // Subir el archivo mediante Multer
-  upload(req, res, function (error) {
-    console.log(req.body);
-    if (error) {
-      // Errores de Multer
-      if (error instanceof multer.MulterError) {
-        if (error.code === "LIMIT_FILE_SIZE") {
-          req.flash("messages", [
-            {
-              message:
-                "El tamaño del archivo es superior al límite. Máximo 300Kb",
-              alertType: "danger",
-            },
-          ]);
+    req.flash("messages", messages);
+    res.redirect("/crear-producto");
+  } else {
+    // Subir el archivo mediante Multer
+    upload(req, res, function (error) {
+      console.log(req.body);
+      if (error) {
+        // Errores de Multer
+        if (error instanceof multer.MulterError) {
+          if (error.code === "LIMIT_FILE_SIZE") {
+            req.flash("messages", [
+              {
+                message:
+                  "El tamaño del archivo es superior al límite. Máximo 300Kb",
+                alertType: "danger",
+              },
+            ]);
+          } else {
+            req.flash("messages", [
+              { message: error.message, alertType: "danger" },
+            ]);
+          }
         } else {
+          // Errores creado por el usuario
           req.flash("messages", [
             { message: error.message, alertType: "danger" },
           ]);
         }
+        // Redireccionar y mostrar el error
+        res.redirect("/crear-producto");
+        return;
       } else {
-        // Errores creado por el usuario
-        req.flash("messages", [
-          { message: error.message, alertType: "danger" },
-        ]);
+        // Archivo cargado correctamente
+        return next();
       }
-      // Redireccionar y mostrar el error
-      res.redirect("/crear-producto");
-      return;
-    } else {
-      // Archivo cargado correctamente
-      return next();
-    }
-  });
-   }
+    });
+  }
 };
 
 // Opciones de configuración para multer en productos
@@ -184,29 +181,28 @@ const configuracionMulter = {
 
 // Muestra un producto que se obtiene a través de su URL
 exports.verProducto = async (req, res, next) => {
-
-   //roles
-   var usuario = false;
-   var admin = false;
-   var miron = false;
-   var rol, nombre; 
-   if(req.isAuthenticated()) {
-     rol = req.user.rol;
-     nombre = req.user.nombre;
-     if(rol == "usuario") {
-       usuario = true;
-     }
-   }
-   if(req.isAuthenticated()) {
-     rol = req.user.rol;
-     nombre = req.user.nombre;
-     if(rol == "admin") {
-       admin = true;
-     }
-   }
-   if(req.isAuthenticated() != true) {
-     miron = true;
-   } 
+  //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre;
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "admin") {
+      admin = true;
+    }
+  }
+  if (req.isAuthenticated() != true) {
+    miron = true;
+  }
 
   // Utilizar la opción populate para obtener información sobre un Object_ID
   const producto = await Producto.findOne({ url: req.params.url })
@@ -218,8 +214,12 @@ exports.verProducto = async (req, res, next) => {
 
   if (!producto) res.redirect("/");
   else {
-    res.render("mostrarProducto", { usuario, admin, miron, nombre,
-      producto
+    res.render("mostrarProducto", {
+      usuario,
+      admin,
+      miron,
+      nombre,
+      producto,
       //productosCarrito: carrito ? carrito.producto.length : 0,
     });
   }
@@ -289,3 +289,33 @@ exports.agregarProductoCarrito = async (req, res, next) => {
     // console.log(error);
   }
 };*/
+
+exports.busqueda = async (req, res, next) => {
+  const productos = await Producto.find({
+    nombre: new RegExp(req.query.nombre, "i"),
+  }).lean();
+  console.log(productos);
+  //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre;
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "admin") {
+      admin = true;
+    }
+  }
+  if (req.isAuthenticated() != true) {
+    miron = true;
+  }
+  res.render("buscar", { productos, usuario, admin, miron, nombre });
+};
