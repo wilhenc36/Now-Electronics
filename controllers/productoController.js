@@ -72,6 +72,7 @@ exports.crearProducto = async (req, res, next) => {
         imagenes: imagen,
         vendedor: req.user._id,
         etiquetas,
+        estado,
       });
       //console.log(req.files.length);
       messages.push({
@@ -380,6 +381,35 @@ exports.electronica = async (req, res, next) => {
 exports.seguridad = async (req, res, next) => {
   const productos = await Producto.find({
     etiquetas: new RegExp("seguridad", "i"),
+  }).lean();
+  //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre;
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "admin") {
+      admin = true;
+    }
+  }
+  if (req.isAuthenticated() != true) {
+    miron = true;
+  }
+  res.render("buscar", { productos, usuario, admin, miron, nombre });
+};
+
+exports.lamparas = async (req, res, next) => {
+  const productos = await Producto.find({
+    etiquetas: new RegExp("lamparas", "i"),
   }).lean();
   //roles
   var usuario = false;
