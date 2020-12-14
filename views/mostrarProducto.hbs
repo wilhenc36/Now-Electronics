@@ -42,7 +42,11 @@
           class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
           <strong>{{producto.nombre}}</strong>
         </h2>
-        <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">bestseller</span>
+        {{#if estado}}
+        <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">{{producto.estado}}</span>
+        {{else}}
+        <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">{{producto.estado}}</span>
+        {{/if}}
         <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
           <span class="red-text font-weight-bold">
             <strong>$. {{producto.precio}}</strong>
