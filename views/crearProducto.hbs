@@ -20,31 +20,28 @@
                   style="max-width: 370px; max-height: 250px;"></div>
                 <div>
                   <span class="btn btn-outline-default btn-round btn-file"><span class="fileinput-new">Seleccione una
-                      imagen</span><span class="fileinput-exists">Cambiar</span><input type="file" name="imagen"
-                      multiple></span>
+                      imagen</span><input type="file" name="imagen" multiple></span>
                   <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i
                       class="fa fa-times"></i> Quitar</a>
                 </div>
               </div>
-              <h6>Etiquetas</h6>
+              <h6>Etiquetas <span class="icon-danger">*</span></h6>
               <div id="tags">
-                <input class="tagsinput" data-color="success" type="text" data-role="tagsinput"
-                  placeholder="etiquetas separadas por coma" />
+                <input class="tagsinput" data-color="success" type="text" name="etiquetas" data-role="tagsinput"
+                  placeholder="    Etiquetas del producto" />
                 {{!-- <div class="tagsinput-add"></div> --}}
                 <!-- You can change "tag-primary" with with "tag-info", "tag-success", "tag-warning","tag-danger" -->
-              </div>
+              </div><br>
               <h6>Estado <span class="icon-danger">*</span></h6>
-              <div class="form-check-radio">
-                <input class="form-check-input" type="radio" name="estado" id="estadoNuevo" value="nuevo" checked>
-                <label class="form-check-label">
-                  Nuevo
-                  <span class="form-check-sign"></span>
-                </label>
+              <div>
+                <select name="estado" id="estado" required>
+                  <option name="estado" value="">Seleccione...</option>
+                  <option name="estado" value="nuevo">Nuevo</option>
+                  <option name="estado" value="oferta">Oferta</option>
               </div>
               <div class="form-check-radio">
-                <input class="form-check-input" type="radio" name="estado" id="estadoUsado" value="usado">
                 <label class="form-check-label">
-                  Usado
+                  <input class="form-check-input" type="radio" name="estado" id="oferta" value="oferta">
                   <span class="form-check-sign"></span>
                 </label>
               </div>
