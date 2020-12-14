@@ -244,9 +244,31 @@ module.exports = () => {
 
   router.get("/pago", function (req, res, next) {
     //var carrito = new Carrito(req.session.carrito);
+     //roles
+     var usuario = false;
+     var admin = false;
+     var miron = false;
+     var rol, nombre;
+     if (req.isAuthenticated()) {
+       rol = req.user.rol;
+       nombre = req.user.nombre;
+       if (rol == "usuario") {
+         usuario = true;
+       }
+     }
+     if (req.isAuthenticated()) {
+       rol = req.user.rol;
+       nombre = req.user.nombre;
+       if (rol == "admin") {
+         admin = true;
+       }
+     }
+     if (req.isAuthenticated() != true) {
+       miron = true;
+     }
 
     req.session.carrito = null;
-    return res.render("pago");
+    return res.render("pago", { usuario, admin, miron, nombre });
   });
 
   /*
@@ -297,6 +319,8 @@ module.exports = () => {
   router.get("/categorias/electronica", productoController.electronica);
 
   router.get("/categorias/seguridad", productoController.seguridad);
+  
+  router.get("/categorias/lamparas", productoController.lamparas);
 
   router.get("/ayuda", (req, res, next) => {
     //roles
