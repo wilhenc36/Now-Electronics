@@ -119,16 +119,16 @@
           <!-- Links -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown mega-dropdown">
-              <a href="/categorias/electronica" class="nav-link dropdown-toggle no-caret">Electrónica</a>
+              <a href="/categorias/electronica" class="nav-link no-caret">Electrónica</a>
             </li>
             <li class="nav-item dropdown mega-dropdown">
-              <a href="/categorias/informatica" class="nav-link dropdown-toggle no-caret">Informática</a>
+              <a href="/categorias/informatica" class="nav-link no-caret">Informática</a>
             </li>
             <li class="nav-item dropdown mega-dropdown">
-              <a href="/categorias/seguridad" class="nav-link dropdown-toggle no-caret">Seguridad</a>
+              <a href="/categorias/seguridad" class="nav-link no-caret">Seguridad</a>
             </li>
             <li class="nav-item dropdown mega-dropdown">
-              <a href="/categorias/lamparas" class="nav-link dropdown-toggle no-caret">Lámparas</a>
+              <a href="/categorias/lamparas" class="nav-link no-caret">Alumbrado</a>
             </li>
           </ul>
 
@@ -171,8 +171,11 @@
               <a href="/producto/{{producto.url}}" class="dark-grey-text">{{producto.nombre}}</a>
             </strong>
           </h5>
-          <span class="badge badge-danger mb-2">bestseller</span>
-          <span class="badge badge-info mb-2 ml-2">nuevo</span>
+          {{#if estado}}
+          <span class="badge badge-danger mb-2">{{producto.estado}}</span>
+          {{else}}
+          <span class="badge badge-info mb-2 ml-2">{{producto.estado}}</span>
+          {{/if}}
           <!-- Rating -->
           <ul class="rating">
             <li>
