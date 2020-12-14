@@ -55,7 +55,7 @@ exports.crearProducto = async (req, res, next) => {
   } else {
     // Almacenar los valores del producto
     try {
-      const { nombre, descripcion, precio, estado } = req.body;
+      const { nombre, descripcion, precio, estado, etiquetas } = req.body;
       const imagen = [];
 
       for (let x = 0; x < req.files.length; x++) {
@@ -71,6 +71,7 @@ exports.crearProducto = async (req, res, next) => {
         precio,
         imagenes: imagen,
         vendedor: req.user._id,
+        etiquetas,
       });
       //console.log(req.files.length);
       messages.push({
@@ -109,7 +110,6 @@ exports.subirImagen = (req, res, next) => {
   } else {
     // Subir el archivo mediante Multer
     upload(req, res, function (error) {
-      console.log(req.body);
       if (error) {
         // Errores de Multer
         if (error instanceof multer.MulterError) {
@@ -293,6 +293,93 @@ exports.agregarProductoCarrito = async (req, res, next) => {
 exports.busqueda = async (req, res, next) => {
   const productos = await Producto.find({
     nombre: new RegExp(req.query.nombre, "i"),
+  }).lean();
+  //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre;
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "admin") {
+      admin = true;
+    }
+  }
+  if (req.isAuthenticated() != true) {
+    miron = true;
+  }
+  res.render("buscar", { productos, usuario, admin, miron, nombre });
+};
+
+exports.informatica = async (req, res, next) => {
+  const productos = await Producto.find({
+    etiquetas: new RegExp("informatica", "i"),
+  }).lean();
+  //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre;
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "admin") {
+      admin = true;
+    }
+  }
+  if (req.isAuthenticated() != true) {
+    miron = true;
+  }
+  res.render("buscar", { productos, usuario, admin, miron, nombre });
+};
+
+exports.electronica = async (req, res, next) => {
+  const productos = await Producto.find({
+    etiquetas: new RegExp("electronica", "i"),
+  }).lean();
+  //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre;
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "admin") {
+      admin = true;
+    }
+  }
+  if (req.isAuthenticated() != true) {
+    miron = true;
+  }
+  res.render("buscar", { productos, usuario, admin, miron, nombre });
+};
+
+exports.seguridad = async (req, res, next) => {
+  const productos = await Producto.find({
+    etiquetas: new RegExp("seguridad", "i"),
   }).lean();
   //roles
   var usuario = false;

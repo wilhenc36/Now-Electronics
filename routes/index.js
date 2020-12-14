@@ -169,7 +169,6 @@ module.exports = () => {
         }
         carrito.add(producto, producto.id);
         req.session.carrito = carrito;
-        console.log(req.session.carrito);
         res.redirect("/");
       });
       req.flash("messages", [
@@ -292,6 +291,66 @@ module.exports = () => {
     authController.verificarInicioSesion,
     usuarioController.perfil
   );
+
+  router.get("/categorias/informatica", productoController.informatica);
+
+  router.get("/categorias/electronica", productoController.electronica);
+
+  router.get("/categorias/seguridad", productoController.seguridad);
+
+  router.get("/ayuda", (req, res, next) => {
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
+
+    res.render("ayuda", { usuario, admin, miron, nombre });
+  });
+
+  router.get("*", (req, res, next) => {
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
+
+    res.render("404error", { usuario, admin, miron, nombre });
+  });
 
   return router;
 };
