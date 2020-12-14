@@ -1,6 +1,6 @@
 <!-- Main Layout -->
-{{#if login}}
 {{#if producto}}
+{{#if login}}
 <main>
     <!-- Main Container -->
     <div class="container">
@@ -149,7 +149,9 @@
     </div>
     <!-- Main Container -->
 </main>
+{{/if}}
 {{else}}
+{{#if login}}
 <style>
     html,
 
@@ -218,9 +220,9 @@
     <div class="mask rgba-stylish-light">
         <div class="container h-100 d-flex justify-content-center align-items-center">
             <div class="row pt-5 mt-3">
-                <div class="col-md-12 mb-3">
+                <div class="col-md-12">
                     <div class="intro-info-content text-center">
-                        <h1 class="display-3 white-text mb-5 wow fadeInDown" data-wow-delay="0.3s"> <a
+                        <h1 class="display-3 white-text wow fadeInDown" data-wow-delay="0.3s"> <a
                                 class="white-text font-weight-bold">El carrito está vacío</a></h1>
                     </div>
                 </div>
