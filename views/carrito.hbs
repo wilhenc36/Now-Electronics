@@ -149,6 +149,85 @@
     </div>
     <!-- Main Container -->
 </main>
+{{else}}
+<style>
+    html,
+
+
+    .jarallax {
+        height: 700px;
+    }
+
+    @media (max-width: 740px) {
+
+        html,
+        body,
+        header,
+        .jarallax {
+            height: 100vh;
+        }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+        html,
+        body,
+        header,
+        .jarallax {
+            height: 100vh;
+        }
+    }
+
+    @media (min-width: 560px) and (max-width: 650px) {
+        header .jarallax h1 {
+            margin-bottom: 1.5rem !important;
+        }
+
+        header .jarallax h5 {
+            margin-bottom: 1.5rem !important;
+        }
+    }
+
+    .top-nav-collapse {
+        background-color: #3246e4 !important;
+    }
+
+    .navbar:not(.top-nav-collapse) {
+        background: transparent !important;
+    }
+
+    @media (max-width: 768px) {
+        .navbar:not(.top-nav-collapse) {
+            background: #3246e4 !important;
+        }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+        .navbar:not(.top-nav-collapse) {
+            background: #3246e4 !important;
+        }
+    }
+
+    h5 {
+        letter-spacing: 3px;
+    }
+</style>
+<!-- Intro Section -->
+<div id="home" class="view jarallax" data-jarallax='{"speed": 0.2}'
+    style="background-image: url(https://image.freepik.com/foto-gratis/compras-linea-concepto-carrito-compras-vacio-teclado-ordenador-portatil_9635-876.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="mask rgba-stylish-light">
+        <div class="container h-100 d-flex justify-content-center align-items-center">
+            <div class="row pt-5 mt-3">
+                <div class="col-md-12 mb-3">
+                    <div class="intro-info-content text-center">
+                        <h1 class="display-3 white-text mb-5 wow fadeInDown" data-wow-delay="0.3s"> <a
+                                class="white-text font-weight-bold">El carrito está vacío</a></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {{/if}}
 {{/if}}
 <!-- Main Layout -->
