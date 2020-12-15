@@ -322,130 +322,189 @@ module.exports = () => {
 
   router.get("/categorias/lamparas", productoController.lamparas);
 
-  router.get("/admin", authController.verificarInicioSesion, (req, res, next) => {
-    //roles
-    var usuario = false;
-    var admin = false;
-    var miron = false;
-    var rol, nombre;
-    if (req.isAuthenticated()) {
-      rol = req.user.rol;
-      nombre = req.user.nombre;
-      if (rol == "usuario") {
-        usuario = true;
+  router.get(
+    "/admin",
+    authController.verificarInicioSesion,
+    (req, res, next) => {
+      //roles
+      var usuario = false;
+      var admin = false;
+      var miron = false;
+      var rol, nombre;
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "usuario") {
+          usuario = true;
+        }
       }
-    }
-    if (req.isAuthenticated()) {
-      rol = req.user.rol;
-      nombre = req.user.nombre;
-      if (rol == "admin") {
-        admin = true;
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "admin") {
+          admin = true;
+        }
       }
-    }
-    if (req.isAuthenticated() != true) {
-      miron = true;
-    }
+      if (req.isAuthenticated() != true) {
+        miron = true;
+      }
 
-    res.render("Admin/admin", {
-      layout: "admin", admin, nombre
-    });
-  });
+      res.render("Admin/admin", {
+        layout: "admin",
+        admin,
+        nombre,
+      });
+    }
+  );
 
-  router.get("/admin/productos", authController.verificarInicioSesion, async (req, res, next) => {
-    const productos = await Producto.find().lean();
-    //roles
-    var usuario = false;
-    var admin = false;
-    var miron = false;
-    var rol, nombre;
-    if (req.isAuthenticated()) {
-      rol = req.user.rol;
-      nombre = req.user.nombre;
-      if (rol == "usuario") {
-        usuario = true;
+  router.get(
+    "/admin/productos",
+    authController.verificarInicioSesion,
+    async (req, res, next) => {
+      const productos = await Producto.find().lean();
+      //roles
+      var usuario = false;
+      var admin = false;
+      var miron = false;
+      var rol, nombre;
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "usuario") {
+          usuario = true;
+        }
       }
-    }
-    if (req.isAuthenticated()) {
-      rol = req.user.rol;
-      nombre = req.user.nombre;
-      if (rol == "admin") {
-        admin = true;
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "admin") {
+          admin = true;
+        }
       }
-    }
-    if (req.isAuthenticated() != true) {
-      miron = true;
-    }
+      if (req.isAuthenticated() != true) {
+        miron = true;
+      }
 
-    res.render("Admin/productos", {
-      layout: "admin",
-      productos,
-      admin, nombre
-    });
-  });
+      res.render("Admin/productos", {
+        layout: "admin",
+        productos,
+        admin,
+        nombre,
+      });
+    }
+  );
 
-  router.get("/admin/usuarios", authController.verificarInicioSesion, (req, res, next) => {
-    //roles
-    var usuario = false;
-    var admin = false;
-    var miron = false;
-    var rol, nombre;
-    if (req.isAuthenticated()) {
-      rol = req.user.rol;
-      nombre = req.user.nombre;
-      if (rol == "usuario") {
-        usuario = true;
+  router.get(
+    "/admin/usuarios",
+    authController.verificarInicioSesion,
+    (req, res, next) => {
+      //roles
+      var usuario = false;
+      var admin = false;
+      var miron = false;
+      var rol, nombre;
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "usuario") {
+          usuario = true;
+        }
       }
-    }
-    if (req.isAuthenticated()) {
-      rol = req.user.rol;
-      nombre = req.user.nombre;
-      if (rol == "admin") {
-        admin = true;
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "admin") {
+          admin = true;
+        }
       }
-    }
-    if (req.isAuthenticated() != true) {
-      miron = true;
-    }
+      if (req.isAuthenticated() != true) {
+        miron = true;
+      }
 
-    res.render("Admin/usuarios", {
-      layout: "admin", admin, nombre
-    });
-  });
+      res.render("Admin/usuarios", {
+        layout: "admin",
+        admin,
+        nombre,
+      });
+    }
+  );
 
-  router.get("/admin/productos/nuevo", authController.verificarInicioSesion, (req, res, next) => {
-    //roles
-    var usuario = false;
-    var admin = false;
-    var miron = false;
-    var rol, nombre;
-    if (req.isAuthenticated()) {
-      rol = req.user.rol;
-      nombre = req.user.nombre;
-      if (rol == "usuario") {
-        usuario = true;
+  router.get(
+    "/admin/productos/nuevo",
+    authController.verificarInicioSesion,
+    (req, res, next) => {
+      //roles
+      var usuario = false;
+      var admin = false;
+      var miron = false;
+      var rol, nombre;
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "usuario") {
+          usuario = true;
+        }
       }
-    }
-    if (req.isAuthenticated()) {
-      rol = req.user.rol;
-      nombre = req.user.nombre;
-      if (rol == "admin") {
-        admin = true;
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "admin") {
+          admin = true;
+        }
       }
-    }
-    if (req.isAuthenticated() != true) {
-      miron = true;
-    }
+      if (req.isAuthenticated() != true) {
+        miron = true;
+      }
 
-    res.render("Admin/productosNuevo", {
-      layout: "admin", admin, nombre
-    });
-  });
+      res.render("Admin/productosNuevo", {
+        layout: "admin",
+        admin,
+        nombre,
+      });
+    }
+  );
 
   router.get("/admin/productos/eliminar/:id", async (req, res, next) => {
     const { id } = req.params;
     await Producto.deleteOne({ _id: id });
     res.redirect("/admin/productos");
   });
+
+  router.get("/admin/productos/editar/:id", async (req, res, next) => {
+    const { id } = req.params;
+    const producto = await Producto.findById(id).lean();
+    res.render("Admin/productoEditar", {
+      layout: "admin",
+      producto,
+    });
+  });
+
+  router.post(
+    "/admin/productos/editar/:id",
+    authController.verificarInicioSesion,
+    /*[
+          check("imagen", "Debes seleccionar una imagen para el producto")
+            .not()
+            .isEmpty(),
+        ],*/
+    productoController.subirImagen,
+    [
+      check("nombre", "Debes ingresar el nombre del producto")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("descripcion", "Debes ingresar la descripción del producto")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("precio", "Debes ingresar el precio del producto")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("precio", "Valor incorrecto en el precio del producto").isNumeric(),
+    ],
+    productoController.actualizarProducto
+  );
 
   router.get("/ayuda", (req, res, next) => {
     //roles
