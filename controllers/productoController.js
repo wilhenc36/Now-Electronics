@@ -81,7 +81,7 @@ exports.crearProducto = async (req, res, next) => {
       });
       req.flash("messages", messages);
 
-      res.redirect("/crear-producto");
+      res.redirect("/admin/productos");
     } catch (error) {
       console.log(error);
       messages.push({
@@ -89,7 +89,7 @@ exports.crearProducto = async (req, res, next) => {
         alertType: "danger",
       });
       req.flash("messages", messages);
-      res.redirect("/crear-producto");
+      res.redirect("/admin/productos");
     }
   }
 };
