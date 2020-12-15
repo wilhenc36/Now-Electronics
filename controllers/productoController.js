@@ -492,6 +492,45 @@ exports.lamparas = async (req, res, next) => {
   res.render("buscar", { productos, usuario, admin, miron, nombre });
 };
 
+exports.cyberweek = async (req, res, next) => {
+  const productos = await Producto.find({
+    estado: new RegExp("oferta", "i"),
+  }).lean();
+  //roles
+  var usuario = false;
+  var admin = false;
+  var miron = false;
+  var rol, nombre;
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "usuario") {
+      usuario = true;
+    }
+  }
+  if (req.isAuthenticated()) {
+    rol = req.user.rol;
+    nombre = req.user.nombre;
+    if (rol == "admin") {
+      admin = true;
+    }
+  }
+  if (req.isAuthenticated() != true) {
+    miron = true;
+  }
+
+  let cantidad = productos.length;
+  for (let i = 0; i < cantidad; i++) {
+    if (productos[i].estado == "nuevo") {
+      productos[i].estado = true;
+    } else {
+      productos[i].estado = false;
+    }
+  }
+
+  res.render("buscar", { productos, usuario, admin, miron, nombre });
+};
+
 exports.actualizarProducto = async (req, res, next) => {
   // Verificar que no existen errores de validación
   const errores = validationResult(req);
@@ -524,17 +563,6 @@ exports.actualizarProducto = async (req, res, next) => {
       await Producto.update({ _id: id }, req.body);
       await Producto.update({ _id: id }, { $set: { imagenes: imagen } });
 
-      // await Producto.update({
-      //   _id: id,
-      //   nombre,
-      //   descripcion,
-      //   precio,
-      //   imagenes: imagen,
-      //   vendedor: req.user._id,
-      //   etiquetas,
-      //   estado,
-      // });
-      //console.log(req.files.length);
       messages.push({
         message: "¡Producto actualizado correctamente!",
         alertType: "success",

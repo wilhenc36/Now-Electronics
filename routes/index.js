@@ -322,6 +322,8 @@ module.exports = () => {
 
   router.get("/categorias/lamparas", productoController.lamparas);
 
+  router.get("/cyber-week", productoController.cyberweek);
+
   router.get(
     "/admin",
     authController.verificarInicioSesion,
@@ -498,7 +500,9 @@ module.exports = () => {
 
     res.render("Admin/productoEditar", {
       layout: "admin",
-      producto, admin, nombre
+      producto,
+      admin,
+      nombre,
     });
   });
 
