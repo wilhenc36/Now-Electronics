@@ -213,6 +213,12 @@ exports.verProducto = async (req, res, next) => {
   // Buscar productos en el carrito de compras si existen
   //const carrito = await Carrito.findOne({ usuario: req.user._id });
 
+  if (producto.estado == "nuevo") {
+    producto.estado = true;
+  } else {
+    producto.estado = false;
+  }
+
   if (!producto) res.redirect("/");
   else {
     res.render("mostrarProducto", {

@@ -171,10 +171,10 @@
               <a href="/producto/{{producto.url}}" class="dark-grey-text">{{producto.nombre}}</a>
             </strong>
           </h5>
-          {{#if estado}}
-          <span class="badge badge-danger mb-2">{{producto.estado}}</span>
+          {{#if producto.estado}}
+          <span class="badge badge-info mb-2 ml-2">Nuevo</span>
           {{else}}
-          <span class="badge badge-info mb-2 ml-2">{{producto.estado}}</span>
+          <span class="badge badge-danger mb-2 ">Oferta</span>
           {{/if}}
           <!-- Rating -->
           <ul class="rating">

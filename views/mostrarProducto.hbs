@@ -34,18 +34,18 @@
         <!-- Carousel Wrapper -->
       </div>
       <div class="col-lg-5 mr-3 text-center text-md-left">
-         <div class="pull-right">
-            <span class="text-muted">Estado del carrito</span> <a href="/carrito" class="btn btn-link"><i
-                class="fa fa-shopping-cart"></i> {{session.carrito.cantidadTotal}} artículos</a>
-          </div>
+        <div class="pull-right">
+          <span class="text-muted">Estado del carrito</span> <a href="/carrito" class="btn btn-link"><i
+              class="fa fa-shopping-cart"></i> {{session.carrito.cantidadTotal}} artículos</a>
+        </div>
         <h2
           class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
           <strong>{{producto.nombre}}</strong>
         </h2>
-        {{#if estado}}
-        <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">{{producto.estado}}</span>
+        {{#if producto.estado}}
+        <span class="badge badge-info product mb-4 ml-xl-0 ml-4">Nuevo</span>
         {{else}}
-        <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">{{producto.estado}}</span>
+        <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">Oferta</span>
         {{/if}}
         <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
           <span class="red-text font-weight-bold">
