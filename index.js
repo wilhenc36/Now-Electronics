@@ -51,7 +51,7 @@ app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 
 // Crear sesion de usuario y la cooike encargada de almacenarla
-app.use(cookieParser());
+app.use(cookieParser("loquesea"));
 
 app.use(
   session({
