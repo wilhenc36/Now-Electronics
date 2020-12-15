@@ -23,7 +23,7 @@
             </div>
             <div class="md-form">
                 <i class="fas fa-lock prefix blue-text"></i>
-                <input type="password" name="password" class="pass" value={{password}} disabled="true">
+                <input style="color: black;" type="password" name="password" class="pass" value={{password}} disabled="true">
             </div>
             <div class="md-form">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -31,15 +31,24 @@
                     <path fill-rule="evenodd"
                         d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9.854-2.854a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
                 </svg>
-                <input type="text" name="rol" class="correo" value={{rol}} disabled="true">
+                <input style="color: black;" type="text" name="rol" class="correo" value={{rol}} disabled="true">
             </div>
             <div class="md-form">
-                <i class="fas fa-envelope prefix blue-text"></i>
-                <input type="text" name="ciudad" class="correo" value={{ciudad}}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-house-door-fill blue-text" viewBox="0 0 16 16">
+                    <path
+                        d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z" />
+                    <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                </svg>
+                <input type="text" name="ciudad" class="correo" placeholder="Ingrese su ciudad" value={{ciudad}}>
             </div>
             <div class="md-form">
-                <i class="fas fa-envelope prefix blue-text"></i>
-                <input type="text" name="pais" class="correo" value={{pais}}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-geo-alt-fill blue-text" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                </svg>
+                <input type="text" name="pais" class="correo" placeholder="Ingrese su país" value={{pais}}>
             </div>
             <div class="md-form">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -51,6 +60,7 @@
                     disabled="true">
             </div>
             {{/each}}
+            <a href="/olvide-password" class="btn btn-primary btn-rounded"> Cambiar contraseña</a>
             <div class="text-center">
                 <button type="submit" class="btn purple-gradient btn-lg">Guardar</button>
                 <hr>

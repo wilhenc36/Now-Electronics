@@ -473,9 +473,32 @@ module.exports = () => {
   router.get("/admin/productos/editar/:id", async (req, res, next) => {
     const { id } = req.params;
     const producto = await Producto.findById(id).lean();
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
+
     res.render("Admin/productoEditar", {
       layout: "admin",
-      producto,
+      producto, admin, nombre
     });
   });
 
