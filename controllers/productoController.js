@@ -107,7 +107,7 @@ exports.subirImagen = (req, res, next) => {
     });
 
     req.flash("messages", messages);
-    res.redirect("/crear-producto");
+    res.redirect("/admin/productos");
   } else {
     // Subir el archivo mediante Multer
     upload(req, res, function (error) {
@@ -134,7 +134,7 @@ exports.subirImagen = (req, res, next) => {
           ]);
         }
         // Redireccionar y mostrar el error
-        res.redirect("/crear-producto");
+        res.redirect("/admin/productos");
         return;
       } else {
         // Archivo cargado correctamente

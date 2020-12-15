@@ -349,6 +349,12 @@ module.exports = () => {
     });
   });
 
+  router.get("/admin/productos/eliminar/:id", async (req, res, next) => {
+    const { id } = req.params;
+    await Producto.deleteOne({ _id: id });
+    res.redirect("/admin/productos");
+  });
+
   router.get("/ayuda", (req, res, next) => {
     //roles
     var usuario = false;
