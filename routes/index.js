@@ -208,7 +208,13 @@ module.exports = () => {
       }
 
       if (!req.session.carrito) {
-        return res.render("carrito", { producto: null });
+        return res.render("carrito", {
+          producto: false,
+          usuario,
+          admin,
+          miron,
+          nombre,
+        });
       }
       var carrito = new Carrito(req.session.carrito);
       res.render("carrito", {
@@ -304,6 +310,33 @@ module.exports = () => {
     }
 
     res.render("terminosCondiciones", { usuario, admin, miron, nombre });
+  });
+
+  router.get("/garantia", (req, res, next) => {
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
+
+    res.render("garantia", { usuario, admin, miron, nombre });
   });
 
   router.get("/productos/busqueda/", productoController.busqueda);
