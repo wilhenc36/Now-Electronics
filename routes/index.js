@@ -7,6 +7,7 @@ const homeController = require("../controllers/homeController");
 const { check } = require("express-validator");
 const Carrito = require("../models/Carrito");
 const Producto = require("../models/Producto");
+const Usuario = require("../models/Usuario");
 
 // Configura y mantiene todos los endpoints en el servidor
 const router = express.Router();
@@ -150,6 +151,23 @@ module.exports = () => {
     productoController.crearProducto
   );
 
+  router.post(
+    "/admin/usuarios/nuevo",
+    [
+      // Realizar una verificación de los atributos del formulario
+      // https://express-validator.github.io/docs/index.html
+      check("nombre", "Debes ingresar tu nombre completo.")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("email", "Debes ingresar un correo electrónico.").not().isEmpty(),
+      check("email", "El correo electrónico ingresado no es válido.")
+        .isEmail()
+        .normalizeEmail(),
+      check("password", "Debes ingresar una contraseña").not().isEmpty(),
+    ],
+    usuarioController.crearCuentaAdmin
+  );
   router.get(
     "/producto/:url",
     authController.verificarInicioSesion,
@@ -432,7 +450,8 @@ module.exports = () => {
   router.get(
     "/admin/usuarios",
     authController.verificarInicioSesion,
-    (req, res, next) => {
+    async (req, res, next) => {
+      const usuarios = await Usuario.find().lean();
       //roles
       var usuario = false;
       var admin = false;
@@ -458,6 +477,7 @@ module.exports = () => {
 
       res.render("Admin/usuarios", {
         layout: "admin",
+        usuarios,
         admin,
         nombre,
       });
@@ -499,6 +519,12 @@ module.exports = () => {
     }
   );
 
+  router.get("/admin/usuarios/nuevo", (req, res, next) => {
+    res.render("Admin/usuariosNuevo", {
+      layout: "admin",
+    });
+  });
+
   router.get("/admin/productos/eliminar/:id", async (req, res, next) => {
     const messages = [];
     const { id } = req.params;
@@ -511,6 +537,20 @@ module.exports = () => {
     req.flash("messages", messages);
 
     res.redirect("/admin/productos");
+  });
+
+  router.get("/admin/usuarios/eliminar/:id", async (req, res, next) => {
+    const messages = [];
+    const { id } = req.params;
+    await Usuario.deleteOne({ _id: id });
+
+    messages.push({
+      message: "Usuario eliminado correctamente!",
+      alertType: "success",
+    });
+    req.flash("messages", messages);
+
+    res.redirect("/admin/usuarios");
   });
 
   router.get("/admin/productos/editar/:id", async (req, res, next) => {
@@ -542,6 +582,40 @@ module.exports = () => {
     res.render("Admin/productoEditar", {
       layout: "admin",
       producto,
+      admin,
+      nombre,
+    });
+  });
+
+  router.get("/admin/usuarios/editar/:id", async (req, res, next) => {
+    const { id } = req.params;
+    const user = await Usuario.findById(id).lean();
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
+
+    res.render("Admin/usuarioEditar", {
+      layout: "admin",
+      user,
       admin,
       nombre,
     });

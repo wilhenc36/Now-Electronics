@@ -2,15 +2,15 @@
     <main>
         <div class="container-fluid">
             <h1 class="mt-4">Dashboard</h1>
+            {{!-- Mensajes para el usuario --}}
+            {{> showMessages messages}}
             <div class="card mb-4">
                 <div class="card-header" style="display:flex; justify-content: space-between;">
                     <div><i class="fas fa-table mr-1"></i>
-                        Usuarios
+                        Productos
                     </div>
                     <div>
-                        <a href="/admin/productos/nuevo">Nuevo</a>
-                        <a href="/admin/productos/editar">Editar</a>
-                        <a href="/admin/productos/eliminar">Eliminar</a>
+                        <a href="/admin/usuarios/nuevo">Nuevo</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -18,70 +18,68 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>Nombre</th>
+                                    <th>Correo electrónico</th>
+                                    <th>Contraseña</th>
+                                    <th>Activo</th>
+                                    <th>Rol</th>
+                                    <th>Operacion</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>Nombre</th>
+                                    <th>Correo electrónico</th>
+                                    <th>Contraseña</th>
+                                    <th>Activo</th>
+                                    <th>Rol</th>
+                                    <th>Operacion</th>
                                 </tr>
                             </tfoot>
                             <tbody>
+                                {{#each usuarios as |usuario|}}
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                </tr>
-                                <tr>
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>63</td>
-                                    <td>2011/07/25</td>
-                                    <td>$170,750</td>
-                                </tr>
-                                <tr>
-                                    <td>Ashton Cox</td>
-                                    <td>Junior Technical Author</td>
-                                    <td>San Francisco</td>
-                                    <td>66</td>
-                                    <td>2009/01/12</td>
-                                    <td>$86,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Sonya Frost</td>
-                                    <td>Software Engineer</td>
-                                    <td>Edinburgh</td>
-                                    <td>23</td>
-                                    <td>2008/12/13</td>
-                                    <td>$103,600</td>
-                                </tr>
-                                <tr>
-                                    <td>Jena Gaines</td>
-                                    <td>Office Manager</td>
-                                    <td>London</td>
-                                    <td>30</td>
-                                    <td>2008/12/19</td>
-                                    <td>$90,560</td>
+                                    <td>{{usuario.nombre}}</td>
+                                    <td>{{usuario.email}}</td>
+                                    <td>{{usuario.password}}</td>
+                                    <td>{{usuario.activo}}</td>
+                                    <td>{{usuario.rol}}</td>
+                                    <td>
+                                        <a href="/admin/usuarios/editar/{{usuario._id}}"
+                                            class="btn btn-primary">Editar</a>
+                                        <a href="/admin/usuarios/eliminar/{{usuario._id}}" class="btn btn-danger"
+                                            data-usuarioid="{{usuario._id}}" data-toggle="modal"
+                                            data-target="#eliminar1">Eliminar</a>
+                                    </td>
                                 </tr>
                             </tbody>
+                            {{/each}}
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+</div>
+
+<div class="modal fade" id="eliminar1" tabindex="1" role="dialog" aria-labelledby="myModalLabel">
+    {{#if usuarios}}
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Confirmar para eliminar</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">¿Esta seguro que desea eliminar este usuario?</p>
+                <input type="hidden" name="usuario_id" id="usuarioid" value="">
+            </div>
+            <div class="modal-footer">
+                <a id="delete1" href="" class="btn btn-primary">Si,
+                    eliminar</a>
+                <a href="/admin/usuarios/" class="btn btn-danger" data-toggle="modal"
+                    data-target="#eliminar1">Cancelar</a>
+            </div>
+        </div>
+    </div>
+    {{/if}}
 </div>

@@ -149,6 +149,19 @@
 
             elemento.href = "/admin/productos/eliminar/" + productoid;
         })
+
+        $("#eliminar1").on("show.bs.modal", function (event) {
+            var button = $(event.relatedTarget)
+
+            var usuarioid = button.data("usuarioid")
+            var modal = $(this)
+
+            var elemento = document.getElementById("delete1")
+
+            modal.find(".modal-body #usuarioid").val(usuarioid)
+
+            elemento.href = "/admin/usuarios/eliminar/" + usuarioid;
+        })
     </script>
 </body>
 
