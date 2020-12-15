@@ -50,9 +50,10 @@
                                     <td>{{producto.estado}}</td>
                                     <td>
                                         <a href="/admin/productos/editar/{{producto._id}}"
-                                            class="btn btn-info">Editar</a>
-                                        <a href="/admin/productos/eliminar/{{producto._id}}"
-                                            class="btn btn-danger">Eliminar</a>
+                                            class="btn btn-primary">Editar</a>
+                                        <a href="/admin/productos/eliminar/{{producto._id}}" class="btn btn-danger"
+                                            data-productoid="{{producto._id}}" data-toggle="modal"
+                                            data-target="#eliminar">Eliminar</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -63,4 +64,26 @@
             </div>
         </div>
     </main>
+</div>
+
+<div class="modal fade" id="eliminar" tabindex="1" role="dialog" aria-labelledby="myModalLabel">
+    {{#if productos}}
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Confirmar para eliminar</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">¿Esta seguro que desea eliminar este producto?</p>
+                <input type="hidden" name="producto_id" id="productoid" value="">
+            </div>
+            <div class="modal-footer">
+                <a id="delete" href="" class="btn btn-primary">Si,
+                    eliminar</a>
+                <a href="/admin/productos/" class="btn btn-danger" data-toggle="modal"
+                    data-target="#eliminar">Cancelar</a>
+            </div>
+        </div>
+    </div>
+    {{/if}}
 </div>

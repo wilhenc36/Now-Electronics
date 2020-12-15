@@ -137,6 +137,18 @@
             }
         }
 
+        $("#eliminar").on("show.bs.modal", function (event) {
+            var button = $(event.relatedTarget)
+
+            var productoid = button.data("productoid")
+            var modal = $(this)
+
+            var elemento = document.getElementById("delete")
+
+            modal.find(".modal-body #productoid").val(productoid)
+
+            elemento.href = "/admin/productos/eliminar/" + productoid;
+        })
     </script>
 </body>
 

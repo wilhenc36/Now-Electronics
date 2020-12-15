@@ -500,8 +500,16 @@ module.exports = () => {
   );
 
   router.get("/admin/productos/eliminar/:id", async (req, res, next) => {
+    const messages = [];
     const { id } = req.params;
     await Producto.deleteOne({ _id: id });
+
+    messages.push({
+      message: "¡Producto eliminado correctamente!",
+      alertType: "success",
+    });
+    req.flash("messages", messages);
+
     res.redirect("/admin/productos");
   });
 
