@@ -116,4 +116,4 @@ dist
 .pnp.*
 
 # Imágenes subidas
-public/uploads
+#public/uploads
