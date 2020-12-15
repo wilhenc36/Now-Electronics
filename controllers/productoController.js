@@ -51,7 +51,7 @@ exports.crearProducto = async (req, res, next) => {
     // Enviar los errores a través de flash messages
     req.flash("messages", messages);
 
-    res.redirect("/crear-producto");
+    res.redirect("/admin/productos");
   } else {
     // Almacenar los valores del producto
     try {
