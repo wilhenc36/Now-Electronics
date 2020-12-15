@@ -95,6 +95,31 @@
         // SideNav Initialization
         $(".button-collapse").sideNav();
 
+        function limpiar() {
+            document.getElementById('imagen').value = ''
+            document.getElementById("preview").setAttribute("src", "/img/blanco.png");
+            document.getElementById("preview2").setAttribute("src", "/img/blanco.png");
+        }
+
+        function previewImage() {
+            var file = document.getElementById("imagen").files;
+            if (file.length > 0) {
+                var fileReader = new FileReader();
+                var fileReader2 = new FileReader();
+
+                fileReader.onload = function (event) {
+                    document.getElementById("preview").setAttribute("src", event.target.result);
+                };
+
+                fileReader2.onload = function (event) {
+                    document.getElementById("preview2").setAttribute("src", event.target.result);
+                };
+
+                fileReader.readAsDataURL(file[0]);
+                fileReader2.readAsDataURL(file[1]);
+            }
+        }
+
     </script>
 </body>
 

@@ -1,0 +1,70 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Dashboard</h1>
+            <div class="card mb-4">
+                <div class="card-header" style="display:flex; justify-content: space-between;">
+                    <div><i class="fas fa-table mr-1"></i>
+                        Nuevo producto
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="/admin/productos/nuevo" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <h6>Nombre del producto</h6>
+                            <input class="form-control" type="text" name="nombre" placeholder="Ingrese el nombre">
+                        </div>
+                        <div class="form-group">
+                            <h6>Precio del producto</h6>
+                            <div class="input-group border-input">
+                                <input class="form-control" type="number" name="precio" placeholder="Ingrese el precio">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-money-bill-alt"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h6>Descripción del producto</h6>
+                            <p>*250 caracteres máximo</p>
+                            <textarea class="form-control" type="text" name="descripcion" rows="6"
+                                placeholder="Ingrese la descripción"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <h6>Etiquetas del producto <p>*separadas por coma</p>
+                            </h6>
+                            <input class="form-control" type="text" name="etiquetas"
+                                placeholder="Ingrese las etiquetas">
+                        </div>
+                        <div class="form-group">
+                            <h6>Estado del producto</h6>
+                            <select class="form-control" name="estado" id="estado">
+                                <option name="estado" value="">Seleccione una opción...</option>
+                                <option name="estado" value="nuevo">Nuevo</option>
+                                <option name="estado" value="oferta">Oferta</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <h6>Imagenes del producto</h6>
+                            <div>
+                                <span class="btn btn-outline-default btn-round btn-file"><span
+                                        class="fileinput-new">Seleccione una
+                                        imagen </span>
+                                    <input class="form-control" type="file" name="imagen" id="imagen" accept="image/*"
+                                        onchange="previewImage();" multiple></span>
+                                <input type="button" class="btn btn-link btn-danger fileinput-exists"
+                                    data-dismiss="fileinput" onclick="limpiar();" value="Quitar">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <img src="/img/blanco.png" height="250px" width="250px" id="preview">
+                            <img src="/img/blanco.png" height="250px" width="250px" id="preview2">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control btn-primary btn-block btn-round " type="submit" value="Guardar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

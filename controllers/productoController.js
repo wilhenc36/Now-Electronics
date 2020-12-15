@@ -323,6 +323,16 @@ exports.busqueda = async (req, res, next) => {
   if (req.isAuthenticated() != true) {
     miron = true;
   }
+
+  let cantidad = productos.length;
+  for (let i = 0; i < cantidad; i++) {
+    if (productos[i].estado == "nuevo") {
+      productos[i].estado = true;
+    } else {
+      productos[i].estado = false;
+    }
+  }
+
   res.render("buscar", { productos, usuario, admin, miron, nombre });
 };
 
@@ -352,6 +362,16 @@ exports.informatica = async (req, res, next) => {
   if (req.isAuthenticated() != true) {
     miron = true;
   }
+
+  let cantidad = productos.length;
+  for (let i = 0; i < cantidad; i++) {
+    if (productos[i].estado == "nuevo") {
+      productos[i].estado = true;
+    } else {
+      productos[i].estado = false;
+    }
+  }
+
   res.render("buscar", { productos, usuario, admin, miron, nombre });
 };
 
@@ -381,6 +401,16 @@ exports.electronica = async (req, res, next) => {
   if (req.isAuthenticated() != true) {
     miron = true;
   }
+
+  let cantidad = productos.length;
+  for (let i = 0; i < cantidad; i++) {
+    if (productos[i].estado == "nuevo") {
+      productos[i].estado = true;
+    } else {
+      productos[i].estado = false;
+    }
+  }
+
   res.render("buscar", { productos, usuario, admin, miron, nombre });
 };
 
@@ -410,6 +440,16 @@ exports.seguridad = async (req, res, next) => {
   if (req.isAuthenticated() != true) {
     miron = true;
   }
+
+  let cantidad = productos.length;
+  for (let i = 0; i < cantidad; i++) {
+    if (productos[i].estado == "nuevo") {
+      productos[i].estado = true;
+    } else {
+      productos[i].estado = false;
+    }
+  }
+
   res.render("buscar", { productos, usuario, admin, miron, nombre });
 };
 
@@ -439,5 +479,15 @@ exports.lamparas = async (req, res, next) => {
   if (req.isAuthenticated() != true) {
     miron = true;
   }
+
+  let cantidad = productos.length;
+  for (let i = 0; i < cantidad; i++) {
+    if (productos[i].estado == "nuevo") {
+      productos[i].estado = true;
+    } else {
+      productos[i].estado = false;
+    }
+  }
+
   res.render("buscar", { productos, usuario, admin, miron, nombre });
 };

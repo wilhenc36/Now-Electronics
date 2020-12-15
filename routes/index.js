@@ -12,262 +12,266 @@ const Producto = require("../models/Producto");
 const router = express.Router();
 
 module.exports = () => {
-    // Rutas disponibles
-    router.get("/", homeController.mostrarProductos);
+  // Rutas disponibles
+  router.get("/", homeController.mostrarProductos);
 
-    router.get("/cerrar-sesion", authController.cerrarSesion);
+  router.get("/cerrar-sesion", authController.cerrarSesion);
 
-    // Rutas para usuario
-    router.get("/crear-cuenta", usuarioController.formularioCrearCuenta);
+  // Rutas para usuario
+  router.get("/crear-cuenta", usuarioController.formularioCrearCuenta);
 
-    router.post(
-        "/crear-cuenta", [
-            // Realizar una verificación de los atributos del formulario
-            // https://express-validator.github.io/docs/index.html
-            check("nombre", "Debes ingresar tu nombre completo.")
-            .not()
-            .isEmpty()
-            .escape(),
-            check("email", "Debes ingresar un correo electrónico.").not().isEmpty(),
-            check("email", "El correo electrónico ingresado no es válido.")
-            .isEmail()
-            .normalizeEmail(),
-            check("password", "Debes ingresar una contraseña").not().isEmpty(),
-        ],
-        usuarioController.crearCuenta
-    );
+  router.post(
+    "/crear-cuenta",
+    [
+      // Realizar una verificación de los atributos del formulario
+      // https://express-validator.github.io/docs/index.html
+      check("nombre", "Debes ingresar tu nombre completo.")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("email", "Debes ingresar un correo electrónico.").not().isEmpty(),
+      check("email", "El correo electrónico ingresado no es válido.")
+        .isEmail()
+        .normalizeEmail(),
+      check("password", "Debes ingresar una contraseña").not().isEmpty(),
+    ],
+    usuarioController.crearCuenta
+  );
 
-    router.get("/iniciar-sesion", usuarioController.formularioIniciarSesion);
+  router.get("/iniciar-sesion", usuarioController.formularioIniciarSesion);
 
-    router.post("/iniciar-sesion", authController.autenticarUsuario);
+  router.post("/iniciar-sesion", authController.autenticarUsuario);
 
-    router.get("/olvide-password", authController.formularioRestablecerPassword);
+  router.get("/olvide-password", authController.formularioRestablecerPassword);
 
-    router.post("/olvide-password", authController.enviarToken);
+  router.post("/olvide-password", authController.enviarToken);
 
-    router.get("/olvide-password/:token", authController.formularioNuevoPassword);
+  router.get("/olvide-password/:token", authController.formularioNuevoPassword);
 
-    router.post("/olvide-password/:token", authController.almacenarNuevaPassword);
+  router.post("/olvide-password/:token", authController.almacenarNuevaPassword);
 
-    // Rutas de administración
-    router.get("/administrar", (req, res, next) => {
-        res.send("Administración del sitio");
-    });
+  // Rutas de administración
+  router.get("/administrar", (req, res, next) => {
+    res.send("Administración del sitio");
+  });
 
-    // Rutas de administración
-    router.get("/mapa", (req, res, next) => {
-        //roles
-        var usuario = false;
-        var admin = false;
-        var miron = false;
-        var rol, nombre;
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "usuario") {
-                usuario = true;
-            }
-        }
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "admin") {
-                admin = true;
-            }
-        }
-        if (req.isAuthenticated() != true) {
-            miron = true;
-        }
+  // Rutas de administración
+  router.get("/mapa", (req, res, next) => {
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
 
-        res.render("mapa", { usuario, admin, miron, nombre });
-    });
+    res.render("mapa", { usuario, admin, miron, nombre });
+  });
 
-    router.post("/mapa", authController.recibirCorreo);
+  router.post("/mapa", authController.recibirCorreo);
 
-    //Cerrar Sesion
-    router.get("/salir", authController.cerrarSesion);
+  //Cerrar Sesion
+  router.get("/salir", authController.cerrarSesion);
 
-    // Rutas sobreNosotros
-    router.get("/sobreNosotros", (req, res, next) => {
-        //roles
-        var usuario = false;
-        var admin = false;
-        var miron = false;
-        var rol, nombre;
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "usuario") {
-                usuario = true;
-            }
-        }
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "admin") {
-                admin = true;
-            }
-        }
-        if (req.isAuthenticated() != true) {
-            miron = true;
-        }
+  // Rutas sobreNosotros
+  router.get("/sobreNosotros", (req, res, next) => {
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
 
-        res.render("sobreNosotros", { usuario, admin, miron, nombre });
-    });
+    res.render("sobreNosotros", { usuario, admin, miron, nombre });
+  });
 
-    // Rutas para productos
-    router.get(
-        "/crear-producto",
-        authController.verificarInicioSesion,
-        productoController.formularioCrearProducto
-    );
+  // Rutas para productos
+  router.get(
+    "/crear-producto",
+    authController.verificarInicioSesion,
+    productoController.formularioCrearProducto
+  );
 
-    router.post(
-        "/crear-producto",
-        authController.verificarInicioSesion,
-        /*[
+  router.post(
+    "/admin/productos/nuevo",
+    authController.verificarInicioSesion,
+    /*[
           check("imagen", "Debes seleccionar una imagen para el producto")
             .not()
             .isEmpty(),
         ],*/
-        productoController.subirImagen, [
-            check("nombre", "Debes ingresar el nombre del producto")
-            .not()
-            .isEmpty()
-            .escape(),
-            check("descripcion", "Debes ingresar la descripción del producto")
-            .not()
-            .isEmpty()
-            .escape(),
-            check("precio", "Debes ingresar el precio del producto")
-            .not()
-            .isEmpty()
-            .escape(),
-            check("precio", "Valor incorrecto en el precio del producto").isNumeric(),
-        ],
-        productoController.crearProducto
-    );
+    productoController.subirImagen,
+    [
+      check("nombre", "Debes ingresar el nombre del producto")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("descripcion", "Debes ingresar la descripción del producto")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("precio", "Debes ingresar el precio del producto")
+        .not()
+        .isEmpty()
+        .escape(),
+      check("precio", "Valor incorrecto en el precio del producto").isNumeric(),
+    ],
+    productoController.crearProducto
+  );
 
-    router.get(
-        "/producto/:url",
-        authController.verificarInicioSesion,
-        productoController.verProducto
-    );
+  router.get(
+    "/producto/:url",
+    authController.verificarInicioSesion,
+    productoController.verProducto
+  );
 
-    router.get(
-        "/carrito/:id",
-        authController.verificarInicioSesion,
-        function(req, res, next) {
-            var productoId = req.params.id;
-            var carrito = new Carrito(req.session.carrito ? req.session.carrito : {});
+  router.get(
+    "/carrito/:id",
+    authController.verificarInicioSesion,
+    function (req, res, next) {
+      var productoId = req.params.id;
+      var carrito = new Carrito(req.session.carrito ? req.session.carrito : {});
 
-            Producto.findById(productoId, function(err, producto) {
-                if (err) {
-                    return res.redirect("/");
-                }
-                carrito.add(producto, producto.id);
-                req.session.carrito = carrito;
-                res.redirect("/");
-            });
-            req.flash("messages", [{
-                message: "Producto agregado a tu carrito de compras",
-                alertType: "success",
-            }, ]);
+      Producto.findById(productoId, function (err, producto) {
+        if (err) {
+          return res.redirect("/");
         }
-    );
-
-    router.get(
-        "/carrito",
-        authController.verificarInicioSesion,
-        function(req, res, next) {
-            //roles
-            var usuario = false;
-            var admin = false;
-            var miron = false;
-            var rol, nombre;
-            if (req.isAuthenticated()) {
-                rol = req.user.rol;
-                nombre = req.user.nombre;
-                if (rol == "usuario") {
-                    usuario = true;
-                }
-            }
-            if (req.isAuthenticated()) {
-                rol = req.user.rol;
-                nombre = req.user.nombre;
-                if (rol == "admin") {
-                    admin = true;
-                }
-            }
-            if (req.isAuthenticated() != true) {
-                miron = true;
-            }
-
-            if (!req.session.carrito) {
-                return res.render("carrito", { producto: null });
-            }
-            var carrito = new Carrito(req.session.carrito);
-            res.render("carrito", {
-                producto: carrito.generarArray(),
-                precioTotal: carrito.precioTotal,
-                usuario,
-                admin,
-                miron,
-                nombre,
-            });
-        }
-    );
-
-    router.get("/eliminar/:id", (req, res, next) => {
-        var productoId = req.params.id;
-        var carrito = new Carrito(
-            req.session.carrito ? req.session.carrito : { items: {} }
-        );
-        carrito.eliminarItems(productoId);
+        carrito.add(producto, producto.id);
         req.session.carrito = carrito;
-        res.redirect("/carrito");
-    });
+        res.redirect("/");
+      });
+      req.flash("messages", [
+        {
+          message: "Producto agregado a tu carrito de compras",
+          alertType: "success",
+        },
+      ]);
+    }
+  );
 
-    router.get("/reducir/:id", (req, res, next) => {
-        var productoId = req.params.id;
-        var carrito = new Carrito(
-            req.session.carrito ? req.session.carrito : { items: {} }
-        );
-        carrito.reducirItem(productoId);
-        req.session.carrito = carrito;
-        res.redirect("/carrito");
-    });
-
-    router.get("/pago", function(req, res, next) {
-        //var carrito = new Carrito(req.session.carrito);
-        //roles
-        var usuario = false;
-        var admin = false;
-        var miron = false;
-        var rol, nombre;
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "usuario") {
-                usuario = true;
-            }
+  router.get(
+    "/carrito",
+    authController.verificarInicioSesion,
+    function (req, res, next) {
+      //roles
+      var usuario = false;
+      var admin = false;
+      var miron = false;
+      var rol, nombre;
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "usuario") {
+          usuario = true;
         }
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "admin") {
-                admin = true;
-            }
+      }
+      if (req.isAuthenticated()) {
+        rol = req.user.rol;
+        nombre = req.user.nombre;
+        if (rol == "admin") {
+          admin = true;
         }
-        if (req.isAuthenticated() != true) {
-            miron = true;
-        }
+      }
+      if (req.isAuthenticated() != true) {
+        miron = true;
+      }
 
-        req.session.carrito = null;
-        return res.render("pago", { usuario, admin, miron, nombre });
-    });
+      if (!req.session.carrito) {
+        return res.render("carrito", { producto: null });
+      }
+      var carrito = new Carrito(req.session.carrito);
+      res.render("carrito", {
+        producto: carrito.generarArray(),
+        precioTotal: carrito.precioTotal,
+        usuario,
+        admin,
+        miron,
+        nombre,
+      });
+    }
+  );
 
-    /*
+  router.get("/eliminar/:id", (req, res, next) => {
+    var productoId = req.params.id;
+    var carrito = new Carrito(
+      req.session.carrito ? req.session.carrito : { items: {} }
+    );
+    carrito.eliminarItems(productoId);
+    req.session.carrito = carrito;
+    res.redirect("/carrito");
+  });
+
+  router.get("/reducir/:id", (req, res, next) => {
+    var productoId = req.params.id;
+    var carrito = new Carrito(
+      req.session.carrito ? req.session.carrito : { items: {} }
+    );
+    carrito.reducirItem(productoId);
+    req.session.carrito = carrito;
+    res.redirect("/carrito");
+  });
+
+  router.get("/pago", function (req, res, next) {
+    //var carrito = new Carrito(req.session.carrito);
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
+
+    req.session.carrito = null;
+    return res.render("pago", { usuario, admin, miron, nombre });
+  });
+
+  /*
       router.get(
         "/carrito/:url",
         authController.verificarInicioSesion,
@@ -275,121 +279,129 @@ module.exports = () => {
       );
     */
 
-    router.get("/terminos-y-condiciones", (req, res, next) => {
-        //roles
-        var usuario = false;
-        var admin = false;
-        var miron = false;
-        var rol, nombre;
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "usuario") {
-                usuario = true;
-            }
-        }
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "admin") {
-                admin = true;
-            }
-        }
-        if (req.isAuthenticated() != true) {
-            miron = true;
-        }
+  router.get("/terminos-y-condiciones", (req, res, next) => {
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
 
-        res.render("terminosCondiciones", { usuario, admin, miron, nombre });
+    res.render("terminosCondiciones", { usuario, admin, miron, nombre });
+  });
+
+  router.get("/productos/busqueda/", productoController.busqueda);
+
+  router.get(
+    "/perfil",
+    authController.verificarInicioSesion,
+    usuarioController.perfil
+  );
+
+  router.get("/categorias/informatica", productoController.informatica);
+
+  router.get("/categorias/electronica", productoController.electronica);
+
+  router.get("/categorias/seguridad", productoController.seguridad);
+
+  router.get("/categorias/lamparas", productoController.lamparas);
+
+  router.get("/admin", (req, res, next) => {
+    res.render("Admin/admin", {
+      layout: "admin",
     });
+  });
 
-    router.get("/productos/busqueda/", productoController.busqueda);
+  router.get("/admin/productos", async (req, res, next) => {
+    const productos = await Producto.find().lean();
 
-    router.get(
-        "/perfil",
-        authController.verificarInicioSesion,
-        usuarioController.perfil
-    );
-
-    router.get("/categorias/informatica", productoController.informatica);
-
-    router.get("/categorias/electronica", productoController.electronica);
-
-    router.get("/categorias/seguridad", productoController.seguridad);
-
-    router.get("/categorias/lamparas", productoController.lamparas);
-
-    router.get("/admin", (req, res, next) => {
-        res.render("Admin/admin", {
-            layout: "admin",
-        });
+    res.render("Admin/productos", {
+      layout: "admin",
+      productos,
     });
+  });
 
-    router.get("/admin/productos", (req, res, next) => {
-        res.render("Admin/productos", {
-            layout: "admin",
-        });
+  router.get("/admin/usuarios", (req, res, next) => {
+    res.render("Admin/usuarios", {
+      layout: "admin",
     });
+  });
 
-    router.get("/admin/usuarios", (req, res, next) => {
-        res.render("Admin/usuarios", {
-            layout: "admin",
-        });
+  router.get("/admin/productos/nuevo", (req, res, next) => {
+    res.render("Admin/productosNuevo", {
+      layout: "admin",
     });
+  });
 
+  router.get("/ayuda", (req, res, next) => {
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
 
-    router.get("/ayuda", (req, res, next) => {
-        //roles
-        var usuario = false;
-        var admin = false;
-        var miron = false;
-        var rol, nombre;
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "usuario") {
-                usuario = true;
-            }
-        }
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "admin") {
-                admin = true;
-            }
-        }
-        if (req.isAuthenticated() != true) {
-            miron = true;
-        }
+    res.render("ayuda", { usuario, admin, miron, nombre });
+  });
 
-        res.render("ayuda", { usuario, admin, miron, nombre });
-    });
+  router.get("*", (req, res, next) => {
+    //roles
+    var usuario = false;
+    var admin = false;
+    var miron = false;
+    var rol, nombre;
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "usuario") {
+        usuario = true;
+      }
+    }
+    if (req.isAuthenticated()) {
+      rol = req.user.rol;
+      nombre = req.user.nombre;
+      if (rol == "admin") {
+        admin = true;
+      }
+    }
+    if (req.isAuthenticated() != true) {
+      miron = true;
+    }
 
-    router.get("*", (req, res, next) => {
-        //roles
-        var usuario = false;
-        var admin = false;
-        var miron = false;
-        var rol, nombre;
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "usuario") {
-                usuario = true;
-            }
-        }
-        if (req.isAuthenticated()) {
-            rol = req.user.rol;
-            nombre = req.user.nombre;
-            if (rol == "admin") {
-                admin = true;
-            }
-        }
-        if (req.isAuthenticated() != true) {
-            miron = true;
-        }
+    res.render("404error", { usuario, admin, miron, nombre });
+  });
 
-        res.render("404error", { usuario, admin, miron, nombre });
-    });
-
-    return router;
+  return router;
 };
