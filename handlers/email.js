@@ -5,8 +5,7 @@ const hbs = require("nodemailer-express-handlebars");
 const util = require("util");
 
 var transport = nodemailer.createTransport({
-  host: "smtp.etherael.email",
-  post: 587,
+  service: "gmail",
   secure: false,
   auth: {
     user: process.env.GMAIL,
