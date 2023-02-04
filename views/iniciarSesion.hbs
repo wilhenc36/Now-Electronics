@@ -16,86 +16,92 @@
   <link href="../css/mdb.min.css" rel="stylesheet">
 
   <style>
-
     html,
-        body,
-        header,
-        .view {
-          height: 100vh;
-        }
+    body,
+    header,
+    .view {
+      height: 100vh;
+    }
 
-        @media (max-width: 740px) {
-          html,
-          body,
-          header,
-          .view {
-            height: 815px;
-          }
-        }
+    @media (max-width: 740px) {
 
-        @media (min-width: 800px) and (max-width: 850px) {
-          html,
-          body,
-          header,
-          .view  {
-            height: 650px;
-          }
-        }
+      html,
+      body,
+      header,
+      .view {
+        height: 815px;
+      }
+    }
 
-        .intro-2 {
-            background: url("https://i.blogs.es/dea53d/rafal-jedrzejek-ogrgcu5usxc-unsplash/1366_2000.jpg")no-repeat center center;
-            background-size: cover;
-        }
-        .top-nav-collapse {
-            background-color: #3f51b5 !important;
-        }
-        .navbar:not(.top-nav-collapse) {
-            background: transparent !important;
-        }
-        @media (max-width: 768px) {
-            .navbar:not(.top-nav-collapse) {
-                background: #3f51b5 !important;
-            }
-        }
-        @media (min-width: 800px) and (max-width: 850px) {
-            .navbar:not(.top-nav-collapse) {
-                background: #3f51b5!important;
-            }
-        }
+    @media (min-width: 800px) and (max-width: 850px) {
 
-        .card {
-            background-color: rgba(229, 228, 255, 0.37);
-        }
-        .md-form label {
-            color: #070101;
-        }
-        h6 {
-            line-height: 1.7;
-        }
+      html,
+      body,
+      header,
+      .view {
+        height: 650px;
+      }
+    }
 
+    .intro-2 {
+      background: url("https://i.blogs.es/dea53d/rafal-jedrzejek-ogrgcu5usxc-unsplash/1366_2000.jpg")no-repeat center center;
+      background-size: cover;
+    }
 
-        .card {
-            margin-top: 30px;
-            /*margin-bottom: -45px;*/
+    .top-nav-collapse {
+      background-color: #3f51b5 !important;
+    }
 
-        }
+    .navbar:not(.top-nav-collapse) {
+      background: transparent !important;
+    }
 
-        .md-form input[type=text]:focus:not([readonly]),
-        .md-form input[type=password]:focus:not([readonly]) {
-            border-bottom: 1px solid #079bcc;
-            box-shadow: 0 1px 0 0 #079bcc;
-        }
-        .md-form input[type=text]:focus:not([readonly])+label,
-        .md-form input[type=password]:focus:not([readonly])+label {
-            color: #079bcc;
-        }
+    @media (max-width: 768px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #3f51b5 !important;
+      }
+    }
 
-        .md-form .form-control {
-            color: rgb(0, 0, 0);
-        }
+    @media (min-width: 800px) and (max-width: 850px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #3f51b5 !important;
+      }
+    }
+
+    .card {
+      background-color: rgba(229, 228, 255, 0.37);
+    }
+
+    .md-form label {
+      color: #070101;
+    }
+
+    h6 {
+      line-height: 1.7;
+    }
 
 
-    </style>
+    .card {
+      margin-top: 30px;
+      /*margin-bottom: -45px;*/
+
+    }
+
+    .md-form input[type=text]:focus:not([readonly]),
+    .md-form input[type=password]:focus:not([readonly]) {
+      border-bottom: 1px solid #079bcc;
+      box-shadow: 0 1px 0 0 #079bcc;
+    }
+
+    .md-form input[type=text]:focus:not([readonly])+label,
+    .md-form input[type=password]:focus:not([readonly])+label {
+      color: #079bcc;
+    }
+
+    .md-form .form-control {
+      color: rgb(0, 0, 0);
+    }
+  </style>
 
 </head>
 
@@ -105,7 +111,7 @@
   <!--Main Navigation-->
   <header>
 
-   
+
 
     <!--Intro Section-->
     <section class="view intro-2">
@@ -113,45 +119,47 @@
         <div class="container">
           <div class="row">
             <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-lg-5">
-            
-              {{>showMessages messages}}
+
+              {{> showMessages messages}}
 
               <!--Form with header-->
-              <form  method="POST" action="/iniciar-sesion" >
-              <div class="card wow fadeIn" data-wow-delay="0.3s">
-                <div class="card-body">
+              <form method="POST" action="/iniciar-sesion">
+                <div class="card wow fadeIn" data-wow-delay="0.3s">
+                  <div class="card-body">
 
-                  <!--Header-->
-                  <div class="form-header purple-gradient">
-                    <h3><i class="fas fa-user mt-2 mb-2"></i> Iniciar sesión</h3>
-                  </div>
+                    <!--Header-->
+                    <div class="form-header purple-gradient">
+                      <h3><i class="fas fa-user mt-2 mb-2"></i> Iniciar sesión</h3>
+                    </div>
 
-                  <!--Body-->
-                 
-                  <div class="md-form">
-                    <i class="fas fa-envelope prefix white-text"></i>
-                    <input type="email"  name="email" placeholder="Ingresa tu correo electrónico" id="orangeForm-email" class="form-control">
-                  
-                  </div>
+                    <!--Body-->
 
-                  <div class="md-form">
-                    <i class="fas fa-lock prefix white-text"></i>
-                    <input type="password" name="password" placeholder="Ingrese su contraseña" id="orangeForm-pass" class="form-control">
-                    
-                  </div>
+                    <div class="md-form">
+                      <i class="fas fa-envelope prefix white-text"></i>
+                      <input type="email" name="email" placeholder="Ingresa tu correo electrónico" id="orangeForm-email"
+                        class="form-control">
 
-                  <div class="text-center">
-                    <button  type="submit" class="btn purple-gradient btn-lg" >Iniciar sesión</button>
-                    <hr>
-                  </div>
+                    </div>
 
-                  <div class="text-center">
-                    <a href="/olvide-password" class="btn btn-link"> ¿Olvidaste tu contraseña?</a>
-                    <p>¿No tienes una cuenta? <a href="/crear-cuenta">Registrate</a></p>
+                    <div class="md-form">
+                      <i class="fas fa-lock prefix white-text"></i>
+                      <input type="password" name="password" placeholder="Ingrese su contraseña" id="orangeForm-pass"
+                        class="form-control">
+
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn purple-gradient btn-lg">Iniciar sesión</button>
+                      <hr>
+                    </div>
+
+                    <div class="text-center">
+                      <a href="/olvide-password" class="btn btn-link"> ¿Olvidaste tu contraseña?</a>
+                      <p>¿No tienes una cuenta? <a href="/crear-cuenta">Registrate</a></p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </form>
+              </form>
               <!--/Form with header-->
 
             </div>
@@ -180,10 +188,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-

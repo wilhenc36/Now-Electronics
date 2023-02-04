@@ -13,18 +13,6 @@ var transport = nodemailer.createTransport({
   },
 });
 
-/*
-// Configurar la capa de transporte del correo
-const transport = nodemailer.createTransport({
-    host: emailConfig.host,
-    port: emailConfig.port,
-    secure: false,
-    auth: {
-      user: emailConfig.user,
-      pass: emailConfig.pass,
-    },
-  });*/
-
 // Template para el envío del correo
 transport.use(
   "compile",
@@ -52,31 +40,6 @@ exports.enviarCorreo = async (opciones) => {
       nombre: opciones.nombre,
     },
   };
-
-  /*
-transport.sendMail(opcionesCorreo, function(err, info){
-  if(err){
-    console.log(err);
-  }
-  else{
-    console.log('Email Sent:' + info.response);
-  }
-});*/
-
-  /*
-// Encabezado del correo electrónico
-exports.enviarCorreo = async (opciones) => {
-  console.log(opciones);
-    const opcionesCorreo = {
-      from: " NowElectronics <nowelectronics001@gmail.com>",
-      to: opciones.to,
-      subject: opciones.subject,
-      template: opciones.template,
-      context: {
-        resetUrl: opciones.resetUrl,
-        //nombre: opciones.nombre,
-      },
-};*/
 
   // Enviar el correo mediante una promesa
   const sendMail = util.promisify(transport.sendMail, transport);
