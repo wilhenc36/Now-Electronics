@@ -1,6 +1,10 @@
 {
   "name": "nowelectronics",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.14.0",
+    "npm": "9.3.1"
+  },
   "description": "Tienda en linea de productos electronicos",
   "main": "index.js",
   "scripts": {
