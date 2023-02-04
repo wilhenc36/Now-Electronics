@@ -52,7 +52,6 @@
     "slug": "^4.0.2"
   },
   "devDependencies": {
-    "@castlegate/jquery-google-maps": "^1.2.3",
     "nodemon": "^2.0.6"
   }
 }
